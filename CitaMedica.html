@@ -87,7 +87,7 @@
                     <div class="contact-form">
                         <div id="success"></div>
                         <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                            <div class="form-row">
+                            <!--<div class="form-row">
                                 <div class="col-md-6">
                                     <div class="control-group">
                                         <input type="text" class="form-control" id="name" placeholder="Your Name"
@@ -104,23 +104,40 @@
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="control-group">
-                                <input type="text" class="form-control" id="subject" placeholder="Subject"
-                                    required="required" data-validation-required-message="Please enter a subject" />
+                                <input type="text" class="form-control" id="paciente" placeholder="Nombre del paciente"
+                                    required="required" data-validation-required-message="Debe ingresar el motivo de la cita" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
-                                <textarea class="form-control" rows="6" id="message" placeholder="Message"
+                                <input type="text" class="form-control" id="costo" placeholder="Costo"
+                                    required="required" data-validation-required-message="Debe imgresar el costo" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="text" class="form-control" id="medico" placeholder="Médico"
+                                    required="required" data-validation-required-message="Debe ingresar el nombre del médico" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="text" class="form-control" id="enfermero" placeholder="Enfermero"
+                                    required="required" data-validation-required-message="Debe ingresar el nombre del enfermero" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <textarea class="form-control" rows="6" id="motivo" placeholder="Motivo"
                                     required="required"
-                                    data-validation-required-message="Please enter your message"></textarea>
+                                    data-validation-required-message="Debe ingresar el motivo de la cita""></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Send
-                                    Message</button>
+                                <button href="CitaMedica.html" class= "btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Programar Cita</button>                                
+                                <a href="Menu.html" class= "btn btn-primary py-3 px-5">Regresar</a>
                             </div>
+                            
                         </form>
+                        
                     </div>
                 </div>
             </div>
