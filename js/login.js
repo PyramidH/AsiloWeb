@@ -1,23 +1,20 @@
-function login(){
+const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Usuarios';
 
-    let usuario = document.getElementById("usuario").value;
-    let contra = document.getElementById("contra").value;
-
-
-    async function login(event) {
-        event.preventDefault();
+    async function login(user,pass) {
+    var user = document.getElementById('usuario').value;
+    var pass = document.getElementById('contra').value;
     
-        const login = {
-            usuario: usuario.value,
-            contraseña: contra.value
-        };
+      /* const login = {
+            usuario: user.value,
+            contraseña: pass.value
+        };*/
     
-        let apiUrlEndpoint = `${apiUrl}/Login`;
-    
+        let apiUrlEndpoint = `${apiUrl}/Login/${user}/${pass}`;
+        console.log(apiUrlEndpoint);
         
         try {
             const response = await fetch(apiUrlEndpoint, {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -25,12 +22,15 @@ function login(){
             });
     
             const data = await response.json();
-    
-            if (response.status == 'true') {
+            /*console.log(data);
+            console.log(response.status);
+            console.log(data.mensaje);*/
+            
+            if (data.response == true) {
                 window.location="Menu.html"
             }
          else {
-                console.error('Contraseña o Usuario Incorrecto', data.mensaje);
+                //console.error('Contraseña o Usuario Incorrecto', data.mensaje);
                 alert("Contraseña o Usuario Incorrecto");
             }
         } catch (error) {
@@ -46,4 +46,3 @@ function login(){
         alert("Datos Malos");
     }*/
 
-}
