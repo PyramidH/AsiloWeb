@@ -23,6 +23,9 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Conexion con script RegistroEnfermeros -->
+    <script src="js/RegistroEnfermeros.js"></script>
 </head>
 
 <body>
@@ -90,7 +93,7 @@
                             </div>
                         </div>
                             <div class="text-center" style="margin-top: 10px;">
-                                <button href="login.html" class= "btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Registrar</button>
+                                <input type="button" value="Registrar" class="btn btn-primary py-3 px-5" onclick="GuardarEnfermero()">    
                                 <a href="login.html" class="btn btn-secondary py-3 px-5" type="submit" id="sendMessageButton">Regresar</a>
                             </div>
                         </form>
@@ -124,7 +127,7 @@
 
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+    <!--<script src="mail/contact.js"></script>-->
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

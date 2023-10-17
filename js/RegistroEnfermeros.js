@@ -1,21 +1,17 @@
 const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Enfermeros';
 
-function login(){
+    async function GuardarEnfermero() { //Cambiar nombre de la función
+        
+        const nombreInput = document.getElementById("nombreenfer");
+        const apellidoInput = document.getElementById("apellidoenfer");
 
-    let nombre = document.getElementById("nombreenfer").value;
-    let apellido = document.getElementById("apellidoenfer").value;
-
-
-    async function login(event) { //Cambiar nombre de la función
-        event.preventDefault();
-    
-        const login = {
-            nombre: nombre.value,
-            apellido: apellido.value
+        const GuardarEn = {
+            nombre: nombreInput.value,
+            apellido: apellidoInput.value
         };
     
-        let apiUrlEndpoint = `${apiUrl}Enfermeros/Guardar`;
-    
+        let apiUrlEndpoint = `${apiUrl}/Guardar`;
+        
         
         try {
             const response = await fetch(apiUrlEndpoint, {
@@ -23,20 +19,19 @@ function login(){
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(login)
+                body: JSON.stringify(GuardarEn)
             });
     
             const data = await response.json();
     
-            if (response.status == 'true') {
-                window.location="Menu.html"
+            if (response.status == '200') {
+                window.location="registroenfermero.html"
             }
          else {
-                console.error('Contraseña o Usuario Incorrecto', data.mensaje);
-                alert("Contraseña o Usuario Incorrecto");
+                console.error('Error al guardar la información', data.mensaje);
+                //alert("Contraseña o Usuario Incorrecto");
             }
         } catch (error) {
             console.error('Contraseña o Usuario Incorrecto', error);
         }
     }
-}
