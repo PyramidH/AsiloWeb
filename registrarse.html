@@ -130,8 +130,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center" style="margin-top: 50px;">
-                                <button class="btn btn-secondary py-3 px-5" type="submit" >Registrarse</button>
+                            <div class="text-center form-row justify-content-center " style="margin-top: 50px;">
+                                <button class="btn btn-secondary py-3 px-5" type="submit" style="display: flex; align-items: center;">
+                                    <span>Registrarse</span>
+                                    <div id="spinner" class="spinner-border text-primary" role="status" style="display: none;margin-left: 10px;">
+                                        <span class="sr-only">Cargando...</span>
+                                    </div>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -148,10 +153,6 @@
         </p>
     </div>
     <!-- Footer End -->
-
-    <div id="spinner" class="spinner-border text-primary" role="status" style="display: none;">
-        <span class="sr-only">Cargando...</span>
-    </div>
 
 
     <!-- Back to Top -->
