@@ -47,6 +47,8 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  min-height: 100%;
+  position: relative;
 }
 
 article,
@@ -63,7 +65,7 @@ section {
 }
 
 body {
-  margin: 0;
+  margin: 0 0 40px 0;
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: 400;
@@ -10754,8 +10756,8 @@ h6,
 }
 
 .footer {
-  position: relative;
-  bottom: -30px;
+  position: absolute;
+  bottom: 0;
   width: 100%;
 }
 
