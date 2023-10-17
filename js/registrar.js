@@ -5,6 +5,7 @@ window.onload = function() {
       
       event.preventDefault();
       guardar();
+      formulario.reset();
   
       
     });
