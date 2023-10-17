@@ -35,26 +35,18 @@
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 pl-3 pl-lg-5">
                 <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-secondary"><span class="text-primary">SYS</span>CO</h1>
+                    <h1 class="m-0 text-secondary"><span class="text-primary">Cotton</span>Care</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Services</a>
-                        <a href="pricing.html" class="nav-item nav-link">Pricing</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                <a href="single.html" class="dropdown-item">Blog Detail</a>
-                            </div>
-                        </div>
-                        <a href="index.html" class="nav-item nav-link active">Contact</a>
-                    </div>
+                        <a href="index.html" class="nav-item nav-link">Inicio</a>
+                        <a href="sobreNosotros.html" class="nav-item nav-link">Sobre Nosotros</a>
+                        <a href="servicios.html" class="nav-item nav-link">Servicios</a>
+                        <a href="contacto.html" class="nav-item nav-link">Contacto</a>
+                        <a href="index.html" class="nav-item nav-link">Iniciar Sesión</a>
                 </div>
             </nav>
         </div>
@@ -82,48 +74,64 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <form name="registrarUsuarios" id="registrar" novalidate="novalidate">
                             <div class="form-row justify-content-center">
                                 <div class="col-md-6">
                                     <div class="control-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Usuario"
-                                            required="required"
-                                            data-validation-required-message="Escriba su usuario" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
-                            </div><div class="form-row justify-content-center">
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Nombre"
+                                        <input type="text" class="form-control" id="usuario" placeholder="Usuario"
                                             required="required"
                                             data-validation-required-message="Escriba su usuario" />
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
                             </div>
-                        </div><div class="form-row justify-content-center">
-                            <div class="col-md-6">
-                                <div class="control-group">
-                                    <input type="text" class="form-control" id="name" placeholder="Email"
-                                        required="required"
-                                        data-validation-required-message="Escriba su usuario" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                        </div>
                             <div class="form-row justify-content-center">
                                 <div class="col-md-6">
                                     <div class="control-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Contraseña"
+                                        <input type="text" class="form-control" id="nombre" placeholder="Nombre"
                                             required="required"
                                             data-validation-required-message="Escriba su usuario" />
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center" style="margin-top: 10px;">
-                                <a href="login.html" class="btn btn-secondary py-3 px-5" type="submit" id="sendMessageButton">Registrarse</a>
+                            <div class="form-row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="control-group">
+                                        <input type="text" class="form-control" id="email" placeholder="Email"
+                                            required="required"
+                                            data-validation-required-message="Escriba su usuario" />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="control-group">
+                                        <input type="text" class="form-control" id="password" placeholder="Contraseña"
+                                            required="required"
+                                            data-validation-required-message="Escriba su usuario" />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="control-group">
+                                        <select class="form-control" id="rol" required ="required" data-validation-required-message="Seleccione un rol">
+                                            <option value="">Seleccionar un rol </option>
+                                            <option value="General">Médico General</option>
+                                            <option value="Especialista">Médico Especialidad</option>
+                                            <option value="Laboratorio">Laboratorio</option>
+                                            <option value="Fundacion">Fundación</option>
+                                            <option value="Asilo">Asilo</option>
+                                        </select>
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center" style="margin-top: 50px;">
+                                <button class="btn btn-secondary py-3 px-5" type="submit" >Registrarse</button>
                             </div>
                         </form>
                     </div>
@@ -140,6 +148,10 @@
         </p>
     </div>
     <!-- Footer End -->
+
+    <div id="spinner" class="spinner-border text-primary" role="status" style="display: none;">
+        <span class="sr-only">Cargando...</span>
+    </div>
 
 
     <!-- Back to Top -->
@@ -160,6 +172,9 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- Servicio Javascript -->
+    <script src="js/registrar.js"></script>
 </body>
 
 </html>
