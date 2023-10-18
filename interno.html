@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>CottonCare - Ingresar Interno</title>
+    <title>CottonCare - Interno</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Favicon -->
@@ -23,16 +23,17 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body onload="cargarListaProductos()">
+
     <!-- Topbar Start -->
     <div class="container-fluid bg-primary py-3">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white pr-3" href="">Cabecitas de Algodon</a>
+                        <a class="text-white pr-3" href="index.html">Cabeza de Algodon</a>
                         <span class="text-white">|</span>
-                        <a class="text-white px-3" href="">Medico General</a>
+                        <a class="text-white px-3" href="">{Rol}</a>
                         <span class="text-white">|</span>
                         <a class="text-white pl-3" href="">Ayuda</a>
                     </div>
@@ -41,7 +42,6 @@
         </div>
     </div>
     <!-- Topbar End -->
-
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
@@ -71,7 +71,7 @@
         <div class="container py-2">
             <div class="row align-items-center py-4">
                 <div class="col-md-6 text-center text-md-left">
-                    <h1 style="color:#194376">Registrar a un nuevo Interno</h1>
+                    <h1 style="color:#194376">Internos</h1>
                 </div>
             </div>
         </div>
@@ -80,9 +80,22 @@
 
 
     <!-- Interno Start -->
-    <div class="container-fluid py-5">
+
+    <!--    Intern Table    -->
+    <div class="container-fluid py-4">
+        <div class="container" style="max-width: 1200px;">
+            <!-- Intern List -->
+            <h2>Lista de Internos</h2>
+            <div class="py-2" id="Intern-list"></div>
+        </div>
+    </div>
+    <!--    Intern Table End    -->
+
+    <!--    New Intern  -->
+    <div class="container-fluid py-4">
         <div class="container" style="max-width: 900px;">
-            <div class="row">
+            <h2>Ingresar Interno</h2>
+            <div class="row py-2">
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
@@ -166,7 +179,7 @@
                             <div class="py-4">
                                 <button href="menu.html" class="btn btn-save py-3 px-5" type="submit"
                                     id="sendMessageButton">Guardar</button>
-                                <a href="menu.html" class="btn btn-cancel py-3 px-5">Cancelar</a>
+                                <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
                             </div>
                         </form>
                     </div>
@@ -174,7 +187,8 @@
             </div>
         </div>
     </div>
-    <!-- Cita Medica End -->
+    <!--    New Intern End  -->
+    <!-- Interno End -->
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
@@ -190,7 +204,7 @@
         </div>
     </div>
     <!-- Footer End -->
-    
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -199,9 +213,10 @@
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <!-- Contact Javascript File -->
+    <!-- Intern Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
+    <script src="js/interno.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

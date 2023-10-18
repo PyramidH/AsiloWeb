@@ -1,14 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
+window.onload = function() {
     const formulario = document.getElementById("registrar");
   
     formulario.addEventListener("submit", function (event) {
       
       event.preventDefault();
       guardar();
+      formulario.reset();
   
       
     });
-  });
+  };
 const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Usuarios';
 
     async function guardar() {
@@ -39,7 +40,7 @@ const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Usuarios';
                 },
                 body: JSON.stringify(registrar)
             });
-           // document.getElementById("spinner").style.display = "none";
+            document.getElementById("spinner").style.display = "none";
             alert('Usuario Registrado Exitosamente')
             const data = await response.json();
             console.log(data)
