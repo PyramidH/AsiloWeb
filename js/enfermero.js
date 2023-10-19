@@ -45,8 +45,7 @@ async function cargarListaProductos() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
         const data = await response.json();
-        console.log("Tabla");
-        console.log(data);
+        
 
         if (response.status === 200) {
             // Limpiar la lista
@@ -108,7 +107,7 @@ async function eliminarProducto(idProducto) {
 
 //*****************
 
-   //Función para llenar el select
+   /*Función para llenar el select
 
     fetch(`${apiUrl}/Lista`).then(function(result){
         if(result.ok){
@@ -129,7 +128,7 @@ async function eliminarProducto(idProducto) {
 
         })
 
-    })
+    })*/
 
     
 
