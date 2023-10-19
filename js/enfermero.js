@@ -1,5 +1,7 @@
 const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Enfermeros';
 
+const internList = document.getElementById('enfermero-list');
+
     async function GuardarEnfermero() { 
         
         const nombreInput = document.getElementById("nombreenfer");
@@ -36,7 +38,7 @@ const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Enfermeros';
     }
 
 
-    const internList = document.getElementById('enfermero-list');
+    
 
 //*****************
 
