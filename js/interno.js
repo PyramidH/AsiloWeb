@@ -3,7 +3,7 @@ const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Internos'; // Reempl
 const internList = document.getElementById('Intern-list');
 
 // Función para cargar la lista de productos Interno
-async function cargarListaProductos() {
+async function cargarListaInternos() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
         const data = await response.json();
@@ -68,7 +68,7 @@ async function cargarListaProductos() {
 }
 
 // Función para eliminar un producto
-async function eliminarProducto(idProducto) {
+async function eliminarInterno(idInterno) {
     // Lógica para eliminar un producto utilizando la API
     // Después de eliminar, vuelve a cargar la lista de productos
 }
