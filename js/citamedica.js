@@ -4,11 +4,11 @@ const internListCita = document.getElementById('cita-list');
 
 
 // Función para cargar la lista de productos Interno
-async function cargarListaProductos() {
+async function cargarListaCitas() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
         const data = await response.json();
-
+        //console.log(data);
         if (response.status === 200) {
             // Limpiar la lista
             internListCita.innerHTML = '';
@@ -73,4 +73,31 @@ async function cargarListaProductos() {
 async function eliminarProducto(idProducto) {
     // Lógica para eliminar un producto utilizando la API
     // Después de eliminar, vuelve a cargar la lista de productos
+}
+
+//Función para llenar el select
+
+const apiUrl1 = 'http://malvarado-001-site1.atempurl.com/api/Enfermeros';
+
+async function cargaselect() {
+    fetch(`${apiUrl1}/Lista`).then(function(result){
+        if(result.ok){
+            return result.json();
+        }
+    }).then(function(data){
+        console.log("Checkbox");
+        console.log(data);
+        //data = JSON.parse(data);
+        data.forEach(function(element){
+            console.log(element);
+            let enfermero = document.getElementById("lista-enfermero");
+            let opt = document.createElement("option");
+            opt.appendChild(document.createTextNode(element.nombre));
+            opt.value = element.idEnfermero;
+
+            enfermero.appendChild(opt);
+
+        })
+
+    })
 }

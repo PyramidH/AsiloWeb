@@ -43,11 +43,11 @@ const internList = document.getElementById('enfermero-list');
 //*****************
 
 // Función para cargar la lista de enfermeros
-async function cargarListaProductos() {
+async function cargarListaEnfermeros() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
         const data = await response.json();
-        
+        console.log(data);
 
         if (response.status === 200) {
             // Limpiar la lista
@@ -109,28 +109,7 @@ async function eliminarProducto(idProducto) {
 
 //*****************
 
-   //Función para llenar el select
-
-    fetch(`${apiUrl}/Lista`).then(function(result){
-        if(result.ok){
-            return result.json();
-        }
-    }).then(function(data){
-        console.log("Checkbox");
-        console.log(data);
-        //data = JSON.parse(data);
-        data.forEach(function(element){
-            console.log(element);
-            let enfermero = document.getElementById("lista-enfermero");
-            let opt = document.createElement("option");
-            opt.appendChild(document.createTextNode(element.nombre));
-            opt.value = element.idEnfermero;
-
-            enfermero.appendChild(opt);
-
-        })
-
-    })
+   
 
     
 
