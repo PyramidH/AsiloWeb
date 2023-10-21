@@ -109,7 +109,7 @@ async function eliminarProducto(idProducto) {
 
 //*****************
 
-   /*Función para llenar el select
+   //Función para llenar el select
 
     fetch(`${apiUrl}/Lista`).then(function(result){
         if(result.ok){
@@ -130,7 +130,7 @@ async function eliminarProducto(idProducto) {
 
         })
 
-    })*/
+    })
 
     
 
