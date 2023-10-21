@@ -84,6 +84,7 @@ async function cargaselect() {
         if(result.ok){
             return result.json();
         }
+        
     }).then(function(data){
         console.log("Checkbox");
         console.log(data);
