@@ -1834,7 +1834,7 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color:  var(--gray-dark) ; 
+  color: var(--gray-dark);
 }
 
 .table th,
@@ -10775,6 +10775,12 @@ h6,
 
 .btn-save:focus,
 .btn-save.focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-save:active,
+.btn-save.active {
   color: black;
   background-color: #8AB722;
   border-color: #8AB722;
