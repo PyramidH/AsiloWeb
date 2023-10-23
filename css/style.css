@@ -10800,3 +10800,7 @@ h6,
   border-color: #A02709;
   box-shadow: 0 0 0 0.2rem rgba(60, 95, 139, 0.5);
 }
+.custom-card {
+    width: 12rem;
+    height: 10rem;
+}
