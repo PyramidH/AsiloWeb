@@ -2,7 +2,6 @@ const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Internos'; // Reempl
 
 const internList = document.getElementById('Intern-list');
 
-// Función para cargar la lista de productos Interno
 async function cargarListaInternos() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
@@ -14,7 +13,7 @@ async function cargarListaInternos() {
 
             // Crear una tabla con clases de Bootstrap
             const table = document.createElement('table');
-            table.classList.add('table', 'table-success' , 'table-striped', 'table-bordered', 'table-hover');
+            table.classList.add('table', 'table-success', 'table-striped', 'table-bordered', 'table-hover');
 
             // Crear encabezados de la tabla con clases de Bootstrap
             const tableHeader = document.createElement('thead');
@@ -33,7 +32,6 @@ async function cargarListaInternos() {
             `;
             table.appendChild(tableHeader);
 
-            // Crear filas de la tabla con datos de productos
             const tableBody = document.createElement('tbody');
             data.response.forEach(internos => {
                 const row = document.createElement('tr');
@@ -49,8 +47,8 @@ async function cargarListaInternos() {
                     <td>${internos.numContactoEmergencia}</td>
                     <td>${internos.email}</td>
                     <td>
-                    <button class="btn btn-primary" onclick="editarProducto(${internos.idInterno})">Editar</button>
-                    <button class="btn btn-cancel" onclick="eliminarProducto(${internos.idInterno})">Eliminar</button>
+                    <button class="btn btn-primary" onclick="editarInterno (${internos.idInterno})">Editar</button>
+                    <button class="btn btn-cancel" onclick="eliminarInterno(${internos.idInterno})">Eliminar</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
@@ -63,12 +61,81 @@ async function cargarListaInternos() {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
     } catch (error) {
-        console.error('Error al cargar la lista de productos:', error);
+        console.error('Error al cargar la lista de Internos:', error);
     }
 }
 
-// Función para eliminar un producto
-async function eliminarInterno(idInterno) {
-    // Lógica para eliminar un producto utilizando la API
-    // Después de eliminar, vuelve a cargar la lista de productos
+async function guardarInterno(event) {
+    event.preventDefault();
+    const interno = {
+        nombre: document.getElementById('nombre').value,
+        apellido: document.getElementById('apellido').value,
+        telefono: document.getElementById('telefono').value,
+        contactoEmergencia: document.getElementById('conEmergencia').value,
+        numContactoEmergencia: document.getElementById('numEmergencia').value,
+        email: document.getElementById('email').value,
+        genero: document.getElementById('genero').value,
+        fechaNacimiento: document.getElementById('fecha').value
+    };
+
+    let apiUrlEndpoint = `${apiUrl}/Guardar`;
+
+    try {
+        const response = await fetch(apiUrlEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(interno)
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200) {
+            cargarListaInternos();
+            limpiarFormulario();
+        } else {
+            console.error('Error en la respuesta de la API:', data.mensaje);
+        }
+    } catch (error) {
+        console.error('Error al guardar el Interno:', error);
+    }
 }
+
+async function eliminarInterno(idInterno) {
+    let apiUrlEndpoint = `${apiUrl}/Eliminar/${idInterno}`;
+    const id = { idInterno: idInterno }
+    try {
+        const response = await fetch(apiUrlEndpoint, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(id)
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200) {
+            cargarListaInternos();
+        } else {
+            console.error('Error en la respuesta de la API:', data.mensaje);
+        }
+    } catch (error) {
+        console.error('Error al eliminar el Interno:', error);
+    }
+}
+
+function limpiarFormulario() {
+    document.getElementById('nombre').value = '';
+    document.getElementById('apellido').value = '';
+    document.getElementById('telefono').value = '';
+    document.getElementById('conEmergencia').value = '';
+    document.getElementById('numEmergencia').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('genero').checked = false;
+    document.getElementById('fecha').value = '';
+}
+
+document.getElementById('registrarInterno').addEventListener('submit', guardarInterno);
+
