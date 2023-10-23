@@ -23,7 +23,8 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body onload="cargarListaCitas(), cargaselect()">
+    
     <!-- Topbar Start -->
     <div class="container-fluid bg-primary py-3">
         <div class="container">
@@ -68,16 +69,38 @@
 
     <!-- Page Header Start -->
     <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5">
-        <div class="container py-5">
+        <div class="container py-2">
             <div class="row align-items-center py-4">
                 <div class="col-md-6 text-center text-md-left">
-                    <h1 class="mb-4 mb-md-0 color:indigo">Programar Cita Médica</h1>
+                    <h1 style="color:#194376">Programar Cita Médica</h1>
                 </div>
             </div>
         </div>
     </div>
     <!-- Page Header Start -->
 
+    <!--    Intern Table    -->
+    <div class="container-fluid py-4">
+        <div class="container" style="max-width: 1200px;">
+            <!-- Intern List -->
+            <h2>Lista de Citas Médicas</h2>
+            <div class="py-2" id="cita-list"></div>
+        </div>
+    </div>
+    <!--    Intern Table End    -->
+
+    
+    <!--    Intern Table    
+    <div class="container-fluid py-4">
+        <div class="container" style="max-width: 1200px;">
+             Intern List 
+            <h2>Lista de Citas Médicas</h2>
+            <div class="py-2" id="cita-list"></div>
+        </div>
+    </div>
+    Intern Table End    -->
+
+    
 
     <!-- Cita Medica Start -->
     <div class="container-fluid py-5">
@@ -112,7 +135,17 @@
                                     required="required"></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
-                            <div>
+                            
+                                    <div class="control-group">
+                                        <select class="form-control" id="lista-enfermero" required ="required" data-validation-required-message="Seleccione al enfermero">
+            
+                                        </select>
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                
+                            
+                            
+                            
                                 <button href="CitaMedica.html" class= "btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Programar Cita</button>                                
                                 <a href="Menu.html" class= "btn btn-secondary py-3 px-5">Regresar</a>
                             </div>
@@ -166,6 +199,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/citamedica.js"></script>
 </body>
 
 </html>
