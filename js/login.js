@@ -34,7 +34,13 @@ async function login(user, pass) {
                 case "Laboratorio":
                     window.location = "dashboardLaboratorio.html";
                 case "Asilo":
-                    console.log("colocar redireccion")
+                    window.location = "dashboardAsilo.html"
+                case "Fundación":
+                    window.location = "dashboardAsilo.html"
+                case "Médico General":
+                    window.location = "dashboardAsilo.html"
+                case "Médico Especialidad":
+                    window.location = "dashboardAsilo.html"
             }
         }
         else {
