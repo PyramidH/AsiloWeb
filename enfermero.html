@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>SYSCO - Registro de Enfermeros</title>
+    <title>CottonCare - Enfermeros</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/favicon1.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -30,7 +30,21 @@
 <body onload="cargarListaEnfermeros()">
     
     <!-- Topbar Start -->
-    <div class="container-fluid bg-primary py-3"></div>
+    <div class="container-fluid bg-primary py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="text-white pr-3" href="index.html">Cabeza de Algodon</a>
+                        <span class="text-white">|</span>
+                        <a class="text-white px-3" href="">{Rol}</a>
+                        <span class="text-white">|</span>
+                        <a class="text-white pl-3" href="">Ayuda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Topbar End -->
 
     <!-- Navbar Start -->
@@ -38,7 +52,7 @@
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 pl-3 pl-lg-5">
                 <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-secondary"><span class="text-primary">SYS</span>CO</h1>
+                    <h1 class="m-0 text-secondary"><span class="text-primary">Cotton</span>Care</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -46,7 +60,8 @@
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                         <a href="Menu.html" class="nav-item nav-link">Menú</a>
-                        <a href="index.html" class="nav-item nav-link">Cerrar Sesión</a>
+                        <a href="about.html" class="nav-item nav-link">Programar Cita Médica</a>
+                        <a href="index.html" class="nav-item nav-link active">Cerrar Sesión</a>
                     </div>
                 </div>
             </nav>
@@ -61,6 +76,9 @@
     <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5">
         <div class="container py-2">
             <div class="row align-items-center py-4">
+                <div class="col-md-6 text-center text-md-left">
+                    <h1 style="color:#194376">Enfermeros</h1>
+                </div>
             </div>
         </div>
     </div>
@@ -79,36 +97,35 @@
 
 
     <!-- Formulario Enfermero -->
-    <div class="container-fluid py-0">
+    <div class="container-fluid py-4">
         <div class="container" style="max-width: 900px;">
-            <h1 class="display-8 text-center mb-5">Registro de Enfermeros</h1>
-            <div class="row">
+            <h2>Ingresar Enfermero</h2>
+            <div class="row py-2">
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                            <div class="form-row justify-content-center">
+                        <form name="RegistrarEnfermero" id="RegistrarEnfermero">
+                            <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="control-group">
                                         <input type="text" class="form-control" id="nombreenfer" placeholder="Nombre"
-                                            required="required" data-validation-required-message="Escriba el nombre del enfermero" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
-                            </div><div class="form-row justify-content-center">
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="apellidoenfer" placeholder="Apellido"
-                                            required="required"
-                                            data-validation-required-message="Escriba escriba el apellido del enfermero" />
+                                            required="required"/>
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                            <div class="text-center" style="margin-top: 10px;">
-                                <input type="button" value="Registrar" class="btn btn-primary py-3 px-5" onclick="GuardarEnfermero()">    
-                                <a href="login.html" class="btn btn-secondary py-3 px-5" type="submit" id="sendMessageButton">Regresar</a>
+                            <div class="form-row py-3">
+                                <div class="col-md-6">
+                                    <div class="control-group">
+                                        <input type="text" class="form-control" id="apellidoenfer" placeholder="Apellido"
+                                            required="required"/>
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                            </div>                                           
+                            <div class="py-4">
+                                <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
+                                <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
                             </div>
                         </form>
                     </div>
@@ -118,11 +135,14 @@
     </div>
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white py-4 px-sm-3 px-md-5" style=" margin-top: 100px;">
-        <p class="m-0 text-center text-white">
-            &copy; <a class="text-white font-weight-medium" href="#">Your Site Name</a>. All Rights Reserved. Designed by
-            <a class="text-white font-weight-medium" href="https://htmlcodex.com">HTML Codex</a>
-        </p>
+    <div class="footer">
+        <div class="container-fluid bg-dark text-white py-4 px-sm-3 px-md-5">
+            <p class="m-0 text-center text-white">
+                &copy; <a class="text-white font-weight-medium" href="#">Cabeza de Algodon</a> Todos los derechos
+                reservados.
+                Diseño por UMG
+            </p>
+        </div>
     </div>
     <!-- Footer End -->
 
