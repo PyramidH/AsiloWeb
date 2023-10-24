@@ -1,4 +1,4 @@
-const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Internos'; // Reemplaza con la URL de tu API
+const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/CitaMedica'; // Reemplaza con la URL de tu API
 
 const CitaList = document.getElementById('cita-list');
 
@@ -42,6 +42,7 @@ async function cargarListaCitas() {
 
                 //Validar el nombre de la variable para el medico
                 //Validar el nombre de la variable para el intenro*paciente
+                row.setAttribute('data-id', cita.idCita);
                 row.innerHTML = `
                     <td>${cita.idCita}</td>
                     <td>${cita.fechaHora}</td>
@@ -69,11 +70,8 @@ async function cargarListaCitas() {
     }
 }
 
-// Función para eliminar un producto
-async function eliminarProducto(idProducto) {
-    // Lógica para eliminar un producto utilizando la API
-    // Después de eliminar, vuelve a cargar la lista de productos
-}
+
+
 
 //Función para llenar el select
 
@@ -91,7 +89,7 @@ async function cargaselect() {
         //data = JSON.parse(data);
         data.forEach(function(element){
             console.log(element);
-            let enfermero = document.getElementById("lista-enfermero");
+            let enfermero = document.getElementById("enfermeros");
             let opt = document.createElement("option");
             opt.appendChild(document.createTextNode(element.nombre));
             opt.value = element.idEnfermero;
