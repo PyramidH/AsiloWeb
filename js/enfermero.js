@@ -47,7 +47,7 @@ async function cargarListaEnfermeros() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
 
         if (response.status === 200) {
             // Limpiar la lista
