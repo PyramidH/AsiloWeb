@@ -1,6 +1,6 @@
 const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Internos'; // Reemplaza con la URL de tu API
 
-const internListCita = document.getElementById('cita-list');
+const CitaList = document.getElementById('cita-list');
 
 
 // Función para cargar la lista de productos Interno
@@ -11,7 +11,7 @@ async function cargarListaCitas() {
         //console.log(data);
         if (response.status === 200) {
             // Limpiar la lista
-            internListCita.innerHTML = '';
+            CitaList.innerHTML = '';
 
             // Crear una tabla con clases de Bootstrap
             const table = document.createElement('table');
@@ -60,7 +60,7 @@ async function cargarListaCitas() {
 
             table.appendChild(tableBody);
 
-            internListCita.appendChild(table);
+            CitaList.appendChild(table);
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }

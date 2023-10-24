@@ -1,6 +1,6 @@
 const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Enfermeros';
 
-const internList = document.getElementById('enfermero-list');
+const EnferList = document.getElementById('enfermero-list');
 
     async function GuardarEnfermero() { 
         
@@ -51,7 +51,7 @@ async function cargarListaEnfermeros() {
 
         if (response.status === 200) {
             // Limpiar la lista
-            internList.innerHTML = '';
+            EnferList.innerHTML = '';
 
             // Crear una tabla con clases de Bootstrap
             const table = document.createElement('table');
@@ -92,7 +92,7 @@ async function cargarListaEnfermeros() {
 
             table.appendChild(tableBody);
 
-            internList.appendChild(table);
+            EnferList.appendChild(table);
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
