@@ -34,6 +34,11 @@
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: "Open Sans", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-body-color: #212529;
+  --bs-body-bg: #fff;
+  --bs-border-width: 1px;
+  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+  --bs-box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
 *,
@@ -10805,4 +10810,52 @@ h6,
   background-color: #A02709;
   border-color: #A02709;
   box-shadow: 0 0 0 0.2rem rgba(60, 95, 139, 0.5);
+}
+
+/* Estilos para la barra vertical */
+.barra-vertical {
+  position: fixed;
+  top: relative;
+  left: 0;
+  background-color: var(--primary);
+  width: 250px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.barra-vertical h4 {
+  color: var(--light);
+  padding: 20px;
+}
+
+.barra-vertical ul {
+  list-style: none;
+  padding: 0;
+}
+
+.barra-vertical li {
+  margin: 0;
+  padding: 0;
+}
+
+.barra-vertical a {
+  display: block;
+  padding: 10px 20px;
+  /* Espacio en blanco alrededor del enlace */
+  text-decoration: none;
+  color: #fff;
+  /* Color del texto en los enlaces */
+}
+
+.barra-vertical a:hover {
+  background-color: var(--secondary);
+  /* Color de fondo al pasar el cursor sobre los enlaces */
+}
+
+/* Estilos para el contenido principal */
+.dashboard {
+  margin-left: 250px;
+  /* Ajusta el valor según el ancho de tu barra vertical */
+  padding: 20px;
+  /* Agrega espacio en blanco alrededor del contenido */
 }
