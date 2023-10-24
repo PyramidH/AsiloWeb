@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Cita Medica</title>
+    <title>CottonCare - Cita Médica</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/favicon1.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -25,15 +25,15 @@
 
 <body onload="cargarListaCitas(), cargaselect()">
     
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-primary py-3">
+     <!-- Topbar Start -->
+     <div class="container-fluid bg-primary py-3">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white pr-3" href="">Cabecitas de Algodon</a>
+                        <a class="text-white pr-3" href="index.html">Cabeza de Algodon</a>
                         <span class="text-white">|</span>
-                        <a class="text-white px-3" href="">Medico General</a>
+                        <a class="text-white px-3" href="">{Rol}</a>
                         <span class="text-white">|</span>
                         <a class="text-white pl-3" href="">Ayuda</a>
                     </div>
@@ -49,7 +49,7 @@
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 pl-3 pl-lg-5">
                 <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-secondary"><span class="text-primary">[NOM</span>BRE]</h1>
+                    <h1 class="m-0 text-secondary"><span class="text-primary">Cotton</span>Care</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -72,7 +72,7 @@
         <div class="container py-2">
             <div class="row align-items-center py-4">
                 <div class="col-md-6 text-center text-md-left">
-                    <h1 style="color:#194376">Programar Cita Médica</h1>
+                    <h1 style="color:#194376">Citas Médicas</h1>
                 </div>
             </div>
         </div>
@@ -90,43 +90,79 @@
     <!--    Intern Table End    -->
 
     
-    <!--    Intern Table    
-    <div class="container-fluid py-4">
-        <div class="container" style="max-width: 1200px;">
-             Intern List 
-            <h2>Lista de Citas Médicas</h2>
-            <div class="py-2" id="cita-list"></div>
-        </div>
-    </div>
-    Intern Table End    -->
-
-    
 
     <!-- Cita Medica Start -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-4">
         <div class="container" style="max-width: 900px;">
-            <div class="row">
+            <h2>Ingresar Cita Médica</h2>
+            <div class="row py-2">
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                            <div class="control-group">
-                                <input type="text" class="form-control" id="paciente" placeholder="Nombre del paciente"
-                                    required="required"/>
+                        <form name="RegistrarCita" id="RegistrarCita">
+                            <div class="form-row">
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="fecha" class="col-form-label">Fecha</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="date" id="fechacita" class="form-control" required="required">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            
+                                <div class="form-row py-3">
+                                    <div class="col-md-10">
+                                        <div class="row">
+                                        <div class="col-md-3">
+                                        <label for="fecha" class="col-form-label">Interno</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" id="internos" required ="required">
+            
+                                        </select>
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+
+                        <div class="form-row py-3">
+                            <div class="col-md-10">
+                                <div class="row">
+                                <div class="col-md-3">
+                                <label for="fecha" class="col-form-label">Médico</label>
+                            </div>
+                            <div class="col-md-9">
+                                <select class="form-control" id="medicos" required ="required">
+    
+                                </select>
                                 <p class="help-block text-danger"></p>
                             </div>
+                        </div>
+                     </div>
+                </div>
+
+                <div class="form-row py-3">
+                    <div class="col-md-10">
+                        <div class="row">
+                        <div class="col-md-3">
+                        <label for="fecha" class="col-form-label">Enfermero</label>
+                    </div>
+                    <div class="col-md-9">
+                        <select class="form-control" id="enfermeros" required ="required">
+
+                        </select>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+             </div>
+        </div>
+                    
                             <div class="control-group">
                                 <input type="text" class="form-control" id="costo" placeholder="Costo"
-                                    required="required"/>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control" id="medico" placeholder="Médico"
-                                    required="required"/>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control" id="enfermero" placeholder="Enfermero"
                                     required="required"/>
                                 <p class="help-block text-danger"></p>
                             </div>
@@ -136,19 +172,10 @@
                                 <p class="help-block text-danger"></p>
                             </div>
                             
-                                    <div class="control-group">
-                                        <select class="form-control" id="lista-enfermero" required ="required" data-validation-required-message="Seleccione al enfermero">
-            
-                                        </select>
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                
-                            
-                            
-                            
-                                <button href="CitaMedica.html" class= "btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Programar Cita</button>                                
-                                <a href="Menu.html" class= "btn btn-secondary py-3 px-5">Regresar</a>
-                            </div>
+                            <div class="py-4">
+                            <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
+                            <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
+                        </div>
                             
                         </form>
                         
@@ -161,23 +188,15 @@
 
 
      <!-- Footer Start -->
-     <div class="container-fluid bg-dark text-white py-4 px-sm-3 px-md-5">
-        <p class="m-0 text-center text-white">
-            &copy; <a class="text-white font-weight-medium" href="#">Cabeza de Algodon</a> Todos los derechos reservados.
-            Diseño por UMG
-        </p>
+    <div class="footer">
+        <div class="container-fluid bg-dark text-white py-4 px-sm-3 px-md-5">
+            <p class="m-0 text-center text-white">
+                &copy; <a class="text-white font-weight-medium" href="#">Cabeza de Algodon</a> Todos los derechos
+                reservados.
+                Diseño por UMG
+            </p>
+        </div>
     </div>
-    <!-- Footer End -->
-    
-    <!-- Footer Start -->
-    <!--<div class="container-fluid bg-primary text-white mt-5 pt-5 px-sm-3 px-md-5">
-        <div class="row pt-5">
-            </div>
-
-    <div class="container-fluid bg-primarytext-white py-4 px-sm-3 px-md-5">
-        
-    </div>
-</div>-->
     <!-- Footer End -->
 
 
@@ -192,10 +211,6 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
