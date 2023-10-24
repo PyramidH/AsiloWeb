@@ -83,7 +83,7 @@
 
     <!--    Intern Table    -->
     <div class="container-fluid py-4">
-        <div class="container" style="max-width: 1200px;">
+        <div class="container" style="max-width: 1250px;">
             <!-- Intern List -->
             <h2>Lista de Internos</h2>
             <div class="py-2" id="Intern-list"></div>
@@ -99,7 +99,7 @@
                 <div class="col-12">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="registrarInterno" id="contactForm">
+                        <form name="registrarInterno" id="registrarInterno">
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="control-group">
@@ -162,14 +162,14 @@
                                     <div class="control-group">
                                         <label for="genero" class="col-form-label">Genero</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="genero" id="genero">
-                                            <label class="form-check-label" for="Genero">
+                                            <input class="form-check-input" type="radio" id="genero" value="M">
+                                            <label class="form-check-label" for="genero">
                                                 Masculino
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="genero" id="genero">
-                                            <label class="form-check-label" for="Genero">
+                                            <input class="form-check-input" type="radio" id="genero" value="F">
+                                            <label class="form-check-label" for="genero">
                                                 Femenino
                                             </label>
                                         </div>
@@ -177,8 +177,7 @@
                                 </div>
                             </div>
                             <div class="py-4">
-                                <button href="menu.html" class="btn btn-save py-3 px-5" type="submit"
-                                    id="sendMessageButton">Guardar</button>
+                                <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
                                 <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
                             </div>
                         </form>
@@ -214,8 +213,6 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Intern Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
     <script src="js/interno.js"></script>
 
     <!-- Template Javascript -->
