@@ -9,7 +9,7 @@ async function login(user, pass) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            }, credentials: 'same-origin'
+            }
         });
 
         const data = await response.json();
