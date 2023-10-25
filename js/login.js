@@ -56,6 +56,18 @@ async function login(user, pass) {
     }
 }
 
+function logOut() {
+    if (localStorage.getItem("sesion") == "true") {
+        localStorage.removeItem("idUsuario", idUsuario);
+        localStorage.removeItem("nombre", nombre);
+        localStorage.removeItem("usuario", usuario);
+        localStorage.removeItem("contraseña", contraseña);
+        localStorage.removeItem("rol", rol);
+        localStorage.removeItem("email", email);
+        localStorage.removeItem("sesion", sesion);
+    }
+}
+
 function isActive() {
     if (localStorage.getItem("sesion") == "true") {
         var rolUsuario = localStorage.getItem("rol");
