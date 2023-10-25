@@ -4,11 +4,6 @@ async function login(user, pass) {
     var user = document.getElementById('usuario').value;
     var pass = document.getElementById('contra').value;
 
-    /*     const login = {
-            usuario: user.value,
-            contraseña: pass.value
-        }; */
-
     let apiUrlEndpoint = `${apiUrl}/Login/${user}/${pass}`;
     try {
         const response = await fetch(apiUrlEndpoint, {
@@ -16,10 +11,11 @@ async function login(user, pass) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(login)
+            credentials: "include"
         });
 
         const data = await response.json();
+        console.log(data);
         if (data.response == true) {
             console.log("Sesion Iniciada Correctamente")
             console.log(document.cookie)
@@ -34,17 +30,16 @@ async function login(user, pass) {
                 case "Laboratorio":
                     window.location = "dashboardLaboratorio.html";
                 case "Asilo":
-                    window.location = "dashboardAsilo.html"
+                    window.location = "dashboardAsilo.html";
                 case "Fundación":
-                    window.location = "dashboardAsilo.html"
+                    window.location = "dashboardFundacion.html"
                 case "Médico General":
-                    window.location = "dashboardAsilo.html"
+                    window.location = "dashboardMedicoGeneral.html"
                 case "Médico Especialidad":
-                    window.location = "dashboardAsilo.html"
+                    window.location = "dashboardMedicoEspecialista.html"
             }
         }
         else {
-            //console.error('Contraseña o Usuario Incorrecto', data.mensaje);
             alert("Contraseña o Usuario Incorrecto");
         }
     } catch (error) {
@@ -60,7 +55,6 @@ function getCookie(cookieName) {
         let cookie = cookieArray[i].trim();
         if (cookie.indexOf(name) == 0) {
             return cookie.substring(name.length, cookie.length);
-            console.log("KKKKKKKKKKKK")
         }
     }
     return "";
