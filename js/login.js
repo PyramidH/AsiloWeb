@@ -3,22 +3,20 @@ const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Usuarios';
 async function login(user, pass) {
     var user = document.getElementById('usuario').value;
     var pass = document.getElementById('contra').value;
-
     let apiUrlEndpoint = `${apiUrl}/Login/${user}/${pass}`;
     try {
         const response = await fetch(apiUrlEndpoint, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            credentials: "include"
+            }
         });
 
         const data = await response.json();
         console.log(data);
         if (data.response == true) {
-            console.log("Sesion Iniciada Correctamente")
-            console.log(document.cookie)
+            console.log("Sesion Iniciada Correctamente");
+            console.log(document.cookie);
             var userInfoCookie = getCookie("InformacionSesion");
             var userInfo = JSON.parse(userInfoCookie);
             var usuario = userInfo.Usuario;
@@ -29,14 +27,19 @@ async function login(user, pass) {
             switch (rol) {
                 case "Laboratorio":
                     window.location = "dashboardLaboratorio.html";
+                    break;
                 case "Asilo":
                     window.location = "dashboardAsilo.html";
+                    break;
                 case "Fundación":
                     window.location = "dashboardFundacion.html"
+                    break;
                 case "Médico General":
                     window.location = "dashboardMedicoGeneral.html"
+                    break;
                 case "Médico Especialidad":
                     window.location = "dashboardMedicoEspecialista.html"
+                    break;
             }
         }
         else {
