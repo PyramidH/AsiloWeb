@@ -8,7 +8,6 @@ async function cargarListaUsuarios() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
         const data = await response.json();
-        console.log(response);
 
         if (response.status === 200) {
             // Limpiar la lista
@@ -135,6 +134,17 @@ function editarUsuario(id) {
         if (index < celdas.length - 1) {
             const valorOriginal = celda.innerText;
             celda.innerHTML = `<input type="text" style='width:100%' value="${valorOriginal}">`;
+            if(index == 3){
+            celda.innerHTML = 
+            `<select style='width:100%'>
+            <option value="${valorOriginal}">${valorOriginal}</option>
+            <option value="Médico General">Médico General</option>
+            <option value="Médico Especialidad">Médico Especialidad</option>
+            <option value="Laboratorio">Laboratorio</option>
+            <option value="Fundacion">Fundación</option>
+            <option value="Asilo">Asilo</option>
+        </select>`;
+            }
         }
     });
 
@@ -143,7 +153,7 @@ function editarUsuario(id) {
     btnEditar.classList.remove("btn-primary");
     btnEditar.classList.add("btn-save");
     btnEditar.onclick = function () {
-        actualizarEnfermero(id);
+        actualizarUsuarios(id);
     };
     const btnEliminar = fila.querySelector('button.btn-cancel');
     btnEliminar.textContent = 'Cancelar';
@@ -160,7 +170,7 @@ async function actualizarUsuarios(id) {
         idUsuario: celdas[0].querySelector('input').value,
         nombre: celdas[1].querySelector('input').value,
         usuario1: celdas[2].querySelector('input').value,
-        rol: celdas[3].querySelector('input').value,
+        rol: celdas[3].querySelector('select').value,
         email: celdas[4].querySelector('input').value
     };
 
