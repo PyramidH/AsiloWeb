@@ -36,11 +36,13 @@ async function cargarListaGastosOperativos() {
             data.response.forEach(gastosOperativos => {
                 const row = document.createElement('tr');
                 row.setAttribute('data-id', gastosOperativos.idGasto);
+                const fechaGastos = new Date(gastosOperativos.fecha);
+                const fechaGastosOperativos = fechaGastos.toISOString().split('T')[0];
                 row.innerHTML = `
                     <td>${gastosOperativos.idGasto}</td>
                     <td>${gastosOperativos.descripcion}</td>
                     <td>${gastosOperativos.monto}</td>
-                    <td>${gastosOperativos.fecha}</td>
+                    <td>${fechaGastosOperativos}</td>
                     <td>
                     <button class="btn btn-primary" onclick="editarGasto(${gastosOperativos.idGasto})">Editar</button>
                     <button class="btn btn-cancel" onclick="eliminarGasto(${gastosOperativos.idGasto})">Eliminar</button>
@@ -64,8 +66,9 @@ async function GuardarGastos(event) {
     event.preventDefault();
 
     const guardarGastos = {
-        descripcion: document.getElementById("descripcionGasto").value,
-        monto: document.getElementById("montoGasto").value
+        descripcion: document.getElementById("descripcion").value,
+        monto: document.getElementById("montoGasto").value,
+        fecha: document.getElementById("fechaGasto").value
     };
 
     let apiUrlEndpoint = `${apiUrl}/Guardar`;

@@ -136,7 +136,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="control-group">
-                                            <input type="text" class="form-control" id="nombreenfer" placeholder="Descripción"
+                                            <input type="text" class="form-control" id="descripcion" placeholder="Descripción"
                                                 required="required"/>
                                             <p class="help-block text-danger"></p>
                                         </div>
@@ -145,12 +145,21 @@
                                 <div class="form-row py-3">
                                     <div class="col-md-6">
                                         <div class="control-group">
-                                            <input type="text" class="form-control" id="apellidoenfer" placeholder="Monto"
+                                            <input type="text" class="form-control" id="montoGasto" placeholder="Monto"
                                                 required="required"/>
                                             <p class="help-block text-danger"></p>
                                         </div>
                                     </div>
-                                </div>                                      
+                                </div>  
+                                <div class="form-row py-3">
+                                    <div class="col-md-6">
+                                        <div class="control-group">
+                                            <input type="date" class="form-control" id="fechaGasto" placeholder="Fecha"
+                                                required="required"/>
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div>                                       
                                 <div class="py-4">
                                     <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
                                     <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
@@ -192,7 +201,6 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/gastosOperativos.js"></script>
-    <script src="js/utils.js"></script>
 </body>
 
 </html>
