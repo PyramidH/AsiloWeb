@@ -10813,23 +10813,22 @@ h6,
 }
 
 .barra-vertical {
-/*   position: fixed;
-  top: 0;
-  background-color: var(--primary);
+  position: fixed;
   width: 250px;
-  height: 100vh;
-  z-index: -900; */
-  position: absolute;
-  top: 0;
+}
+
+.fondo-barra-vertical {
   background-color: var(--primary);
   width: 250px;
   height: 100%;
-  z-index: -900;
+  position: absolute;
+  top: 0;
+  z-index: -1;
 }
 
 .barra-vertical h4 {
   color: var(--light);
-  padding: 140px 20px 20px 20px;
+  padding: 20px;
 }
 
 .barra-vertical ul {
@@ -10857,7 +10856,10 @@ h6,
   margin-left: 250px;
   padding: 20px;
 }
+
 .styled-table {
-  background-color: white; /* Fondo blanco */
-  border: 1px solid blue;  /* Borde azul */
+  background-color: white;
+  /* Fondo blanco */
+  border: 1px solid blue;
+  /* Borde azul */
 }
