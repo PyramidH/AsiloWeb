@@ -10857,3 +10857,7 @@ h6,
   margin-left: 250px;
   padding: 20px;
 }
+.styled-table {
+  background-color: white; /* Fondo blanco */
+  border: 1px solid blue;  /* Borde azul */
+}
