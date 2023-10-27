@@ -50,9 +50,9 @@ async function cargarListaCitas() {
                     <td>${fechacita1}</td>
                     <td>${cita.motivo}</td>
                     <td>${cita.costo}</td>
-                    <td>${cita.nombre + " " + cita.apellido}</td>
-                    <td>${cita.medico}</td> 
-                    <td>${cita.interno}</td>
+                    <td>${cita.idInternoNavigation.nombre + " " + cita.idInternoNavigation.apellido}</td>
+                    <td>${cita.idMedicoNavigation.nombre + " " + cita.idMedicoNavigation.apellido}</td> 
+                    <td>${cita.idEnfermeroNavigation.nombre + " " + cita.idEnfermeroNavigation.apellido}</td>
                     <td>
                     <button class="btn btn-primary" onclick="editarCita(${cita.idCita})">Editar</button>
                     <button class="btn btn-cancel" onclick="eliminarCita(${cita.idCita})">Eliminar</button>
@@ -150,11 +150,18 @@ function editarCita(id) {
             if(index == 1){
                 celda.innerHTML = `<input type="date" style='width:100%' value="${valorOriginal}">`;
                 }
-          /*  if(index == 4){
-                celda.innerHTML = 
-            `<select style='width:100%' ${cargarSelectInterno()}>
-        </select>`;
-                }*/
+            if(index == 4){
+                celda.innerHTML = '';
+                celda.appendChild(cmbInternos.cloneNode(true));
+                }
+            if(index == 5){
+                celda.innerHTML = '';
+                celda.appendChild(cmbMedicos.cloneNode(true));
+                }
+            if(index == 6){
+                celda.innerHTML = '';
+                celda.appendChild(cmbEnfermeros.cloneNode(true));
+                }
         }
     });
 
@@ -181,9 +188,9 @@ async function actualizarcita(id) {
         fechaHora: celdas[1].querySelector('input').value,
         motivo: celdas[2].querySelector('input').value,
         costo: celdas[3].querySelector('input').value,
-        idInterno: celdas[4].querySelector('input').value,
-        idMedico: celdas[5].querySelector('input').value,
-        idEnfermero: celdas[6].querySelector('input').value
+        idInterno: celdas[4].querySelector('select').value,
+        idMedico: celdas[5].querySelector('select').value,
+        idEnfermero: celdas[6].querySelector('select').value
     };
 
     console.log(cita);
