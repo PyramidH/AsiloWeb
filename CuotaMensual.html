@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>CottonCare - Medicamentos</title>
+    <title>CottonCare - Cuota Mensual</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     <!-- Favicon -->
@@ -28,7 +28,7 @@
     <link href="css/style.css" rel="stylesheet" />
   </head>
 
-  <body onload="cargarListaMedicamentos()">
+  <body onload="cargarCuotaMensual()">
     <!-- Topbar Start -->
     <div class="container-fluid bg-primary py-3">
       <div class="container">
@@ -75,9 +75,7 @@
           >
             <div class="navbar-nav ml-auto py-0">
               <a href="Menu.html" class="nav-item nav-link">Menú</a>
-              <a href="about.html" class="nav-item nav-link"
-                >Programar Cita Médica</a
-              >
+              <a href="about.html" class="nav-item nav-link">Cuota Mensual</a>
               <a href="index.html" class="nav-item nav-link active"
                 >Cerrar Sesión</a
               >
@@ -95,7 +93,7 @@
       <div class="container py-2">
         <div class="row align-items-center py-4">
           <div class="col-md-6 text-center text-md-left">
-            <h1 style="color: #194376">Medicamentos</h1>
+            <h1 style="color: #194376">Cuota Mensual</h1>
           </div>
         </div>
       </div>
@@ -104,20 +102,20 @@
 
     <!-- Interno Start -->
 
-    <!--    medicamentos Table    -->
+    <!--    Cuota Mensual Table    -->
     <div class="container-fluid py-4">
       <div class="container" style="max-width: 1200px">
-        <!-- medicamentos List -->
-        <h2>Lista de Medicamentos</h2>
-        <div class="py-2" id="Medicamentos-list"></div>
+        <!-- Cuota Mensual List -->
+        <h2>Cuota Mensual</h2>
+        <div class="py-2" id="Cuota Mensual-list"></div>
       </div>
     </div>
-    <!--    medicamentos Table End    -->
+    <!--    Cuota Mensual Table End    -->
 
-    <!--    New medicamento  -->
+    <!--    New Cuota Mensual  -->
     <div class="container-fluid py-4">
       <div class="container" style="max-width: 900px">
-        <h2>Ingresar Medicamento</h2>
+        <h2>Ingresar Cuota Mensual</h2>
         <div class="row py-2">
           <div class="col-12">
             <div class="contact-form">
@@ -129,8 +127,8 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="nombre"
-                        placeholder="Nombre medicamento"
+                        id="Id Cuota"
+                        placeholder="Id Cuota"
                         required="required"
                       />
                       <p class="help-block text-danger"></p>
@@ -141,8 +139,20 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="descripcion"
-                        placeholder="Descripcion"
+                        id="Monto"
+                        placeholder="Monto"
+                        required="required"
+                      />
+                      <p class="help-block text-danger"></p>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="control-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="Fecha"
+                        placeholder="Fecha"
                         required="required"
                       />
                       <p class="help-block text-danger"></p>
@@ -154,8 +164,20 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="costo"
-                      placeholder="Costo"
+                      id="Descripcion"
+                      placeholder="Descripcion"
+                      required="required"
+                    />
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="control-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="Id Interno"
+                      placeholder="Id Interno"
                       required="required"
                     />
                     <p class="help-block text-danger"></p>
@@ -181,7 +203,7 @@
       </div>
     </div>
     <!--    New Intern End  -->
-    <!-- medicamento End -->
+    <!-- Cuota Mensual End -->
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary back-to-top"
@@ -213,7 +235,7 @@
     <!-- Intern Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
-    <script src="js/Medicamentos.js"></script>
+    <script src="js/CuotaMensual.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
