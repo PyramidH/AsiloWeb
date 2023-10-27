@@ -1,6 +1,12 @@
-const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/CitaMedica'; // Reemplaza con la URL de tu API
+const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/CitaMedica';
+const apiUrlInternos = 'http://malvarado-001-site1.atempurl.com/api/Internos';
+const apiUrlMedicos = 'http://malvarado-001-site1.atempurl.com/api/Medicos';
+const apiUrlEnfermeros = 'http://malvarado-001-site1.atempurl.com/api/Enfermeros';
 
 const CitaList = document.getElementById('cita-list');
+const cmbInternos = document.getElementById('internos');
+const cmbMedicos = document.getElementById('medicos');
+const cmbEnfermeros = document.getElementById('enfermeros');
 
 
 // Función para cargar la lista de productos Interno
@@ -76,26 +82,71 @@ async function cargarListaCitas() {
 
 const apiUrl1 = 'http://malvarado-001-site1.atempurl.com/api/Enfermeros';
 
-async function cargaselect() {
-    fetch(`${apiUrl1}/Lista`).then(function(result){
-        if(result.ok){
-            return result.json();
+async function cargarSelectInterno() {
+
+    try {
+        const response = await fetch(`${apiUrlInternos}/Lista`);
+        const data = await response.json();
+
+        if (response.status === 200) {
+            data.response.forEach(interno => {
+                var cmbOption = document.createElement("option");
+                cmbOption.text = interno.nombre + " " + interno.apellido;
+                cmbOption.value = interno.idInterno;
+                cmbInternos.add(cmbOption);
+            });
+
+        } else {
+            console.error('Error en la respuesta de la API:', data.mensaje);
         }
-        
-    }).then(function(data){
-        console.log("Checkbox");
-        console.log(data);
-        //data = JSON.parse(data);
-        data.forEach(function(element){
-            console.log(element);
-            let enfermero = document.getElementById("enfermeros");
-            let opt = document.createElement("option");
-            opt.appendChild(document.createTextNode(element.nombre));
-            opt.value = element.idEnfermero;
+    } catch (error) {
+        console.error('Error al cargar la lista de Internos:', error);
+    }
 
-            enfermero.appendChild(opt);
+}
 
-        })
+async function cargarSelectMedico() {
 
-    })
+    try {
+        const response = await fetch(`${apiUrlMedicos}/Lista`);
+        const data = await response.json();
+
+        if (response.status === 200) {
+            data.response.forEach(medico => {
+                var cmbOption = document.createElement("option");
+                cmbOption.text = medico.nombre + " " + medico.apellido;
+                cmbOption.value = medico.idMedico;
+                cmbMedicos.add(cmbOption);
+            });
+
+        } else {
+            console.error('Error en la respuesta de la API:', data.mensaje);
+        }
+    } catch (error) {
+        console.error('Error al cargar la lista de Internos:', error);
+    }
+
+}
+
+async function cargarSelectEnfermero() {
+
+    try {
+        const response = await fetch(`${apiUrlEnfermeros}/Lista`);
+        const data = await response.json();
+
+        if (response.status === 200) {
+            data.response.forEach(enfermero => {
+                var cmbOption = document.createElement("option");
+                cmbOption.text = enfermero.nombre + " " + enfermero.apellido;
+                cmbOption.value = enfermero.idEnfermero;
+                cmbEnfermeros.add(cmbOption);
+            });
+
+        } else {
+            console.error('Error en la respuesta de la API:', data.mensaje);
+        }
+    } catch (error) {
+        console.error('Error al cargar la lista de Internos:', error);
+    }
+
 }
