@@ -1,9 +1,9 @@
-const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Usuarios';
+const apiUrlLogin = 'http://malvarado-001-site1.atempurl.com/api/Usuarios';
 
 async function login(user, pass) {
     var user = document.getElementById('usuario').value;
     var pass = document.getElementById('contra').value;
-    let apiUrlEndpoint = `${apiUrl}/Login/${user}/${pass}`;
+    let apiUrlEndpoint = `${apiUrlLogin}/Login/${user}/${pass}`;
     try {
         const response = await fetch(apiUrlEndpoint, {
             method: 'GET',
@@ -58,13 +58,13 @@ async function login(user, pass) {
 
 function logOut() {
     if (localStorage.getItem("sesion") == "true") {
-        localStorage.removeItem("idUsuario", idUsuario);
-        localStorage.removeItem("nombre", nombre);
-        localStorage.removeItem("usuario", usuario);
-        localStorage.removeItem("contraseña", contraseña);
-        localStorage.removeItem("rol", rol);
-        localStorage.removeItem("email", email);
-        localStorage.removeItem("sesion", sesion);
+        localStorage.removeItem("idUsuario");
+        localStorage.removeItem("nombre");
+        localStorage.removeItem("usuario");
+        localStorage.removeItem("contraseña");
+        localStorage.removeItem("rol");
+        localStorage.removeItem("email");
+        localStorage.removeItem("sesion");
     }
 }
 
@@ -90,6 +90,11 @@ function isActive() {
         }
     }
 }
+
+document.getElementById('logOut').addEventListener('click', logOut);
+
+
+
 
 
 
