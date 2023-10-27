@@ -64,11 +64,9 @@ async function GuardarMedicamento(event) {
     event.preventDefault();
 
     const medicamento = {
-        id: document.getElementById('id').value,
         nombre: document.getElementById('nombre').value,
         descripcion: document.getElementById('descripcion').value,
-        costo: document.getElementById('costo').value,
-        Existencia: document.getElementById('existencia').value
+        costo: document.getElementById('costo').value
     };
 
     let apiUrlEndpoint = `${apiUrl}/Guardar`;

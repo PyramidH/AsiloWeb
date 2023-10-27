@@ -62,7 +62,7 @@ async function GuardarCuotaMensual(event) {
     event.preventDefault();
 
     const cuota = {
-        idInterno: document.getElementById('IDInterno').value,
+        idInterno: document.getElementById('ID Interno').value,
         monto: document.getElementById('Monto').value,
         fecha: document.getElementById('Fecha').value,
         descripcion: document.getElementById('Descripcion').value,
@@ -119,11 +119,10 @@ async function eliminarCuotaMensual(idCuota) {
 }
 
 function limpiarFormularioCuota() {
-    document.getElementById('Id cuota').value = '';
+    document.getElementById('Id interno').value = '';
     document.getElementById('monto').value = '';
     document.getElementById('fecha').value = '';
     document.getElementById('descripcion').value = '';
-    document.getElementById('Id interno').value = '';
 }
 
 function editarCuotaMensual(id) {
@@ -156,10 +155,10 @@ async function actualizarCuota(id) {
     const celdas = fila.querySelectorAll('td');
     const cuota = {
         idCuota: celdas[0].querySelector('input').value,
-        monto: celdas[1].querySelector('input').value,
-        fecha: celdas[2].querySelector('input').value,
-        descripcion: celdas[3].querySelector('input').value,
-        idInterno: celdas[4].querySelector('input').value
+        idInterno: celdas[1].querySelector('input').value,
+        monto: celdas[2].querySelector('input').value,
+        fecha: celdas[3].querySelector('input').value,
+        descripcion: celdas[4].querySelector('input').value
     };
 
     let apiUrlEndpoint = `${apiUrl}/Editar`;
