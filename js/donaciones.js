@@ -14,8 +14,7 @@ async function cargarListaDonaciones() {
 
             // Crear una tabla con clases de Bootstrap
             const table = document.createElement('table');
-            table.classList.add('table', 'table-success' , 'table-striped', 'table-bordered', 'table-hover');
-
+            
             // Crear encabezados de la tabla con clases de Bootstrap
             const tableHeader = document.createElement('thead');
             tableHeader.innerHTML = `
