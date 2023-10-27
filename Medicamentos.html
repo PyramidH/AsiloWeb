@@ -32,108 +32,145 @@
     <!-- Topbar Start -->
     <div class="container-fluid bg-primary py-3">
       <div class="container">
-        <div class="row">
-          <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
-            <div class="d-inline-flex align-items-center">
-              <a class="text-white pr-3" href="index.html">Cabeza de Algodon</a>
-              <span class="text-white">|</span>
-              <a class="text-white px-3" href="">{Rol}</a>
-              <span class="text-white">|</span>
-              <a class="text-white pl-3" href="">Ayuda</a>
-            </div>
+          <div class="row">
+              <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+              </div>
           </div>
-        </div>
       </div>
     </div>
     <!-- Topbar End -->
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
-      <div
-        class="container-lg position-relative p-0 px-lg-3"
-        style="z-index: 9"
-      >
-        <nav
-          class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 pl-3 pl-lg-5"
-        >
-          <a href="" class="navbar-brand">
-            <h1 class="m-0 text-secondary">
-              <span class="text-primary">Cotton</span>Care
-            </h1>
-          </a>
-          <button
-            type="button"
-            class="navbar-toggler"
-            data-toggle="collapse"
-            data-target="#navbarCollapse"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse justify-content-between px-3"
-            id="navbarCollapse"
-          >
-            <div class="navbar-nav ml-auto py-0">
-              <a href="Menu.html" class="nav-item nav-link">Menú</a>
-              <a href="about.html" class="nav-item nav-link"
-                >Programar Cita Médica</a
-              >
-              <a href="index.html" class="nav-item nav-link active"
-                >Cerrar Sesión</a
-              >
-            </div>
-          </div>
-        </nav>
+      <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+          <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 pl-3 pl-lg-5">
+              <a href="" class="navbar-brand">
+                  <h1 class="m-0 text-secondary"><span class="text-primary">Cotton</span>Care</h1>
+              </a>
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                  <div class="navbar-nav ml-auto py-0">
+                  </div>
+              </div>
+          </nav>
       </div>
     </div>
     <!-- Navbar End -->
 
     <!-- Page Header Start -->
-    <div
-      class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5"
-    >
-      <div class="container py-2">
-        <div class="row align-items-center py-4">
-          <div class="col-md-6 text-center text-md-left">
-            <h1 style="color: #194376">Medicamentos</h1>
-          </div>
-        </div>
-      </div>
+    <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2">
     </div>
-    <!-- Page Header Start -->
 
+    <!-- Page Header Start -->
+     <!-- Contenido principal del dashboard -->
+     <span class="fondo-barra-vertical"></span>
+     <nav class="barra-vertical">
+         <a href="dashboardAsilo.html">
+           <h4 class="font-weight-bold mb-4 ml-4">ASILO <i class="fas fa-hospital-user"></i></h4>
+         </a>
+         <ul class="list-group">
+             <a class="d-flex justify-content-between align-items-center" href="donaciones.html">
+                 Donación
+                 <i class="fas fa-hand-holding-medical"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center" href="gastosOperativos.html" >
+                 Gastos Operativos
+                 <i class="fas fa-money-check"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center">
+                 Cuota Mensual
+                 <i class="fas fa-coins"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center">
+                 Ficha Médica
+                 <i class="fas fa-file-medical-alt"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center">
+                 Costos Paciente
+                 <i class="fas fa-donate"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center">
+                 Listado de Visitas
+                 <i class="fas fa-clipboard-list"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center">
+                 Cobros Paciente
+                 <i class="fas fa-procedures"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center">
+                 Pagos a Fundación
+                 <i class="fas fa-hand-holding-usd"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center">
+                 Reporte
+                 <i class="fas fa-file-medical"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center">
+                 Exámenes
+                 <i class="fas fa-notes-medical"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center" href="Medicamentos.html">
+                 Medicamentos
+                 <i class="fas fa-pills"></i>
+             </a>
+             <a class="d-flex justify-content-between align-items-center" href="login.html">
+                 Cerrar Sesión
+                 <i class="fas fa-sign-out-alt"></i>
+             </a>
+         </ul>
+      </nav>
+     <!-- Contenido principal del dashboard -->
     <!-- Interno Start -->
 
     <!--    medicamentos Table    -->
-    <div class="container-fluid py-4">
-      <div class="container" style="max-width: 1200px">
-        <!-- medicamentos List -->
-        <h2>Lista de Medicamentos</h2>
-        <div class="py-2" id="Medicamentos-list"></div>
+    <span class = 'fondo-barra-vertical'></span>
+    <div class="dashboard">
+      <div class="container-fluid py-4">
+        <div class="container" style="max-width: 1200px">
+          <!-- medicamentos List -->
+          <h2>Lista de Medicamentos</h2>
+          <div class="py-2" id="Medicamentos-list"></div>
+        </div>
       </div>
     </div>
     <!--    medicamentos Table End    -->
 
     <!--    New medicamento  -->
-    <div class="container-fluid py-4">
-      <div class="container" style="max-width: 900px">
-        <h2>Ingresar Medicamento</h2>
-        <div class="row py-2">
-          <div class="col-12">
-            <div class="contact-form">
-              <div id="success"></div>
-              <form name="registrardonacion" id="contactForm">
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <div class="control-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="nombre"
-                        placeholder="Nombre medicamento"
-                        required="required"
-                      />
-                      <p class="help-block text-danger"></p>
+    <div class="dashboard"> 
+      <div class="container-fluid py-4">
+        <div class="container" style="max-width: 900px">
+          <h2>Ingresar Medicamento</h2>
+          <div class="row py-2">
+            <div class="col-12">
+              <div class="contact-form">
+                <div id="success"></div>
+                <form name="registrardonacion" id="contactForm">
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="control-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="nombre"
+                          placeholder="Nombre medicamento"
+                          required="required"
+                        />
+                        <p class="help-block text-danger"></p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="control-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="descripcion"
+                          placeholder="Descripcion"
+                          required="required"
+                        />
+                        <p class="help-block text-danger"></p>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -141,40 +178,28 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="descripcion"
-                        placeholder="Descripcion"
+                        id="costo"
+                        placeholder="Costo"
                         required="required"
                       />
                       <p class="help-block text-danger"></p>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="control-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="costo"
-                      placeholder="Costo"
-                      required="required"
-                    />
-                    <p class="help-block text-danger"></p>
+                  <div class="py-4">
+                    <button
+                      href="menu.html"
+                      class="btn btn-save py-3 px-5"
+                      type="submit"
+                      id="sendMessageButton"
+                    >
+                      Guardar
+                    </button>
+                    <a href="menu.html" class="btn btn-cancel py-3 px-5"
+                      >Cancelar</a
+                    >
                   </div>
-                </div>
-                <div class="py-4">
-                  <button
-                    href="menu.html"
-                    class="btn btn-save py-3 px-5"
-                    type="submit"
-                    id="sendMessageButton"
-                  >
-                    Guardar
-                  </button>
-                  <a href="menu.html" class="btn btn-cancel py-3 px-5"
-                    >Cancelar</a
-                  >
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
