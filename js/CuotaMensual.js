@@ -58,34 +58,36 @@ async function cargarCuotaMensual() {
     }
 }
 
-// Función para guardar una nueva Cuota Mensual
-async function guardarCuotaMensual() {
-    // Obtén los datos del formulario y crea un objeto Cuota Mensual
-    const nuevoCuotaMensual = {
+
+async function GuardarCuotaMensual(event) { 
+    event.preventDefault();
+
+    const cuota = {
         idInterno: document.getElementById('IDInterno').value,
         monto: document.getElementById('Monto').value,
         fecha: document.getElementById('Fecha').value,
         descripcion: document.getElementById('Descripcion').value,
     };
 
-    // Realiza una solicitud POST a la API para guardar la Cuota Mensual
-    try {
-        const response = await fetch(`${apiUrl}/Guardar`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(nuevoCuotaMensual)
-        });
+    let apiUrlEndpoint = `${apiUrl}/Guardar`;
+        
+        
+        try {
+            const response = await fetch(apiUrlEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(cuota)
+                
+            });
+            const data = await response.json();
 
-        const data = await response.json();
-
-        if (response.status === 200) {
-            // Si la respuesta es exitosa, carga la lista actualizada de Cuota Mensual
-            cargarCuotaMensual();
-            // Limpia el formulario
-            document.getElementById('CuotaMensual-form').reset();
-        } else {
+            if (response.status == '200') {
+                cargarCuotaMensual();
+                limpiarFormularioCuota();
+            }
+         else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
     } catch (error) {
@@ -93,23 +95,21 @@ async function guardarCuotaMensual() {
     }
 }
 
-// Función para eliminar una Cuota Mensual
 async function eliminarCuotaMensual(idCuota) {
-    // Realiza una solicitud DELETE a la API para eliminar la Cuota Mensual con el ID proporcionado
     let apiUrlEndpoint = `${apiUrl}/Eliminar/${idCuota}`;
-
+    const id = { idCuota: idCuota}
     try {
         const response = await fetch(apiUrlEndpoint, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(id)
         });
 
         const data = await response.json();
 
         if (response.status === 200) {
-            // Si la respuesta es exitosa, carga la lista actualizada de Cuota Mensual
             cargarCuotaMensual();
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
@@ -119,16 +119,51 @@ async function eliminarCuotaMensual(idCuota) {
     }
 }
 
-// Función para editar un registro de Cuota Mensual
-async function editarCuotaMensual(idCuota) {
+function limpiarFormularioCuota() {
+    document.getElementById('Id cuota').value = '';
+    document.getElementById('monto').value = '';
+    document.getElementById('fecha').value = '';
+    document.getElementById('descripcion').value = '';
+    document.getElementById('Id interno').value = '';
+}
+
+function editarCuotaMensual(id) {
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    const celdas = fila.querySelectorAll('td');
+    celdas.forEach(function (celda, index) {
+        if (index < celdas.length - 1) {
+            const valorOriginal = celda.innerText;
+            celda.innerHTML = `<input type="text" style='width:100%' value="${valorOriginal}">`;
+        }
+    });
+
+    const btnEditar = fila.querySelector('button.btn-primary');
+    btnEditar.textContent = 'Guardar';
+    btnEditar.classList.remove("btn-primary");
+    btnEditar.classList.add("btn-save");
+    btnEditar.onclick = function () {
+        actualizarCuota(id);
+    };
+    const btnEliminar = fila.querySelector('button.btn-cancel');
+    btnEliminar.textContent = 'Cancelar';
+    btnEliminar.onclick = function () {
+        cargarListaCuota();
+    };
+}
+
+async function actualizarCuota(id) {
+    event.preventDefault();
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    const celdas = fila.querySelectorAll('td');
     const cuota = {
-        idInterno: document.getElementById('IDInterno').value,
-        monto: document.getElementById('Monto').value,
-        fecha: document.getElementById('Fecha').value,
-        descripcion: document.getElementById('Descripcion').value,
+        idCuota: celdas[0].querySelector('input').value,
+        monto: celdas[1].querySelector('input').value,
+        fecha: celdas[2].querySelector('input').value,
+        descripcion: celdas[3].querySelector('input').value,
+        idInterno: celdas[4].querySelector('input').value
     };
 
-    let apiUrlEndpoint = `${apiUrl}/Editar/${idCuota}`; // Reemplaza con la ruta adecuada para editar un registro
+    let apiUrlEndpoint = `${apiUrl}/Editar`;
 
     try {
         const response = await fetch(apiUrlEndpoint, {
@@ -142,22 +177,13 @@ async function editarCuotaMensual(idCuota) {
         const data = await response.json();
 
         if (response.status === 200) {
-            cargarCuotaMensual(); // Carga la lista actualizada de Cuota Mensual
-            document.getElementById('CuotaMensual-form').reset(); // Limpia el formulario
+            cargarListaCuota();
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
     } catch (error) {
-        console.error('Error al editar la Cuota Mensual:', error);
+        console.error('Error al actualizar Cuota Mensual:', error);
     }
 }
 
-
-// Agregar el evento para guardar una Cuota Mensual cuando se envía el formulario
-document.getElementById('CuotaMensual-form').addEventListener('submit', function (event) {
-    event.preventDefault();
-    guardarCuotaMensual();
-});
-
-// Cargar la lista de Cuota Mensual al cargar la página
-cargarCuotaMensual();
+document.getElementById('RegistrarCuotaMensual').addEventListener('submit', GuardarCuotaMensual);
