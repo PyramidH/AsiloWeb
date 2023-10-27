@@ -58,44 +58,7 @@ async function cargarListaUsuarios() {
     } catch (error) {
         console.error('Error al cargar la lista de los usuarios:', error);
     }
-}
-/*
-async function GuardarUsuario(event) { 
-    event.preventDefault();
-
-    const GuardarUser = {
-        nombre: document.getElementById("nombreenfer").value,
-        apellido: document.getElementById("apellidoenfer").value
-    };
-
-    let apiUrlEndpoint = `${apiUrl}/Guardar`;
-        
-        
-        try {
-            const response = await fetch(apiUrlEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(GuardarUser)
-                
-            });
-            const data = await response.json();
-
-            if (response.status == '200') {
-                cargarListaEnfermeros();
-                limpiarFormularioEnfermero();
-            }
-         else {
-                console.error('Error en la respuesta de la API:', data.mensaje);
-            }
-        } catch (error) {
-            console.error('Error al guardar el enfermero:', error);
-        }
-    }
-*/
-
-    
+}    
 
 async function eliminarUsuario(idUsuario) {
     let apiUrlEndpoint = `${apiUrl}/Eliminar/${idUsuario}`;
@@ -120,11 +83,6 @@ async function eliminarUsuario(idUsuario) {
         console.error('Error al eliminar el usuario:', error);
     }
 }
-/*
-function limpiarFormularioEnfermero() {
-    document.getElementById('nombreenfer').value = '';
-    document.getElementById('apellidoenfer').value = '';
-}*/
 
 function editarUsuario(id) {
     const fila = document.querySelector(`tr[data-id="${id}"]`);
