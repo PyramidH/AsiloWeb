@@ -23,10 +23,10 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body onload="cargarListaCitas(), cargaselect()">
-    
-     <!-- Topbar Start -->
-     <div class="container-fluid bg-primary py-3">
+<body onload="cargarListaCitas(), cargarSelectInterno(), cargarSelectMedico(), cargarSelectEnfermero()">
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-primary py-3">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
@@ -89,7 +89,7 @@
     </div>
     <!--    Intern Table End    -->
 
-    
+
 
     <!-- Cita Medica Start -->
     <div class="container-fluid py-4">
@@ -101,69 +101,68 @@
                         <div id="success"></div>
                         <form name="RegistrarCita" id="RegistrarCita">
                             <div class="form-row">
-                            <div class="col-md-10">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <label for="fecha" class="col-form-label">Fecha</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input type="date" id="fechacita" class="form-control" required="required">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            
-                                <div class="form-row py-3">
-                                    <div class="col-md-10">
-                                        <div class="row">
+                                <div class="col-md-10">
+                                    <div class="row">
                                         <div class="col-md-3">
-                                        <label for="fecha" class="col-form-label">Interno</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <select class="form-control" id="internos" required ="required">
-            
-                                        </select>
-                                        <p class="help-block text-danger"></p>
+                                            <label for="fecha" class="col-form-label">Fecha</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="date" id="fechacita" class="form-control" required="required">
+                                        </div>
                                     </div>
                                 </div>
-                             </div>
-                        </div>
-
-                        <div class="form-row py-3">
-                            <div class="col-md-10">
-                                <div class="row">
-                                <div class="col-md-3">
-                                <label for="fecha" class="col-form-label">Médico</label>
                             </div>
-                            <div class="col-md-9">
-                                <select class="form-control" id="medicos" required ="required">
-    
-                                </select>
-                                <p class="help-block text-danger"></p>
+
+                            <div class="form-row py-3">
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="fecha" class="col-form-label">Interno</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select class="form-control" id="internos" required="required">
+                                            </select>
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                     </div>
-                </div>
 
-                <div class="form-row py-3">
-                    <div class="col-md-10">
-                        <div class="row">
-                        <div class="col-md-3">
-                        <label for="fecha" class="col-form-label">Enfermero</label>
-                    </div>
-                    <div class="col-md-9">
-                        <select class="form-control" id="enfermeros" required ="required">
+                            <div class="form-row py-3">
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="fecha" class="col-form-label">Médico</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select class="form-control" id="medicos" required="required">
 
-                        </select>
-                        <p class="help-block text-danger"></p>
-                    </div>
-                </div>
-             </div>
-        </div>
-                    
+                                            </select>
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row py-3">
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="fecha" class="col-form-label">Enfermero</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select class="form-control" id="enfermeros" required="required">
+
+                                            </select>
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="control-group">
                                 <input type="text" class="form-control" id="costo" placeholder="Costo"
-                                    required="required"/>
+                                    required="required" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
@@ -171,14 +170,14 @@
                                     required="required"></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
-                            
+
                             <div class="py-4">
-                            <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
-                            <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
-                        </div>
-                            
+                                <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
+                                <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
+                            </div>
+
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
@@ -187,7 +186,7 @@
     <!-- Cita Medica End -->
 
 
-     <!-- Footer Start -->
+    <!-- Footer Start -->
     <div class="footer">
         <div class="container-fluid bg-dark text-white py-4 px-sm-3 px-md-5">
             <p class="m-0 text-center text-white">
