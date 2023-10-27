@@ -3,7 +3,7 @@ const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Donaciones'; // Reem
 const internList = document.getElementById('Donaciones-list');
 
 // Función para cargar la lista de productos Interno
-async function cargarListaProductos() {
+async function cargarListaDonaciones() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
         const data = await response.json();
@@ -41,8 +41,8 @@ async function cargarListaProductos() {
                     <td>${donaciones.monto}</td>
                     <td>${fechaSolo}</td>
                     <td>
-                    <button class="btn btn-primary" onclick="editarProducto(${donaciones.idDonacion})">Editar</button>
-                    <button class="btn btn-cancel" onclick="eliminarProducto(${donaciones.idDonacion})">Eliminar</button>
+                    <button class="btn btn-primary" onclick="editarDonacion(${donaciones.idDonacion})">Editar</button>
+                    <button class="btn btn-cancel" onclick="eliminarDonacion(${donaciones.idDonacion})">Eliminar</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
@@ -59,8 +59,128 @@ async function cargarListaProductos() {
     }
 }
 
-// Función para eliminar un producto
-async function eliminarProducto(idProducto) {
-    // Lógica para eliminar un producto utilizando la API
-    // Después de eliminar, vuelve a cargar la lista de productos
+async function GuardarDonacion(event) {
+    event.preventDefault();
+
+    const GuardarEn = {
+        tipoDonante: document.getElementById("tipoDonante").value,
+        monto: document.getElementById("monto").value,
+        fecha: document.getElementById("fecha").value
+    };
+
+    let apiUrlEndpoint = `${apiUrl}/Guardar`;
+
+
+        try {
+            const response = await fetch(apiUrlEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(GuardarEn)
+
+            });
+            const data = await response.json();
+
+            if (response.status == '200') {
+                cargarListaDonaciones();
+                limpiarFormulario();
+            }
+         else {
+                console.error('Error en la respuesta de la API:', data.mensaje);
+            }
+        } catch (error) {
+            console.error('Error al guardar el enfermero:', error);
+        }
+
 }
+
+function limpiarFormulario() {
+    document.getElementById('tipoDonante').value = '';
+    document.getElementById('monto').value = '';
+    document.getElementById('fecha').value = '';
+}
+
+
+async function eliminarDonacion(idDonacion) {
+    let apiUrlEndpoint = `${apiUrl}/Eliminar/${idDonacion}`;
+    const id = { idDonacion: idDonacion}
+    try {
+        const response = await fetch(apiUrlEndpoint, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(id)
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200) {
+            cargarListaDonaciones();
+        } else {
+            console.error('Error en la respuesta de la API:', data.mensaje);
+        }
+    } catch (error) {
+        console.error('Error al eliminar donacion:', error);
+    }
+}
+
+function editarDonacion(idDonacion) {
+    const fila = document.querySelector(`tr[data-id="${idDonacion}"]`);
+    const celdas = fila.querySelectorAll('td');
+    celdas.forEach(function (celda, index) {
+        if (index < celdas.length - 1) {
+            const valorOriginal = celda.innerText;
+            celda.innerHTML = `<input type="text" style='width:100%' value="${valorOriginal}">`;
+        }
+    });
+
+    const btnEditar = fila.querySelector('button.btn-primary');
+    btnEditar.textContent = 'Guardar';
+    btnEditar.classList.remove("btn-primary");
+    btnEditar.classList.add("btn-save");
+    btnEditar.onclick = function () {
+        actualizarDonacion(idDonacion);
+    };
+    const btnEliminar = fila.querySelector('button.btn-cancel');
+    btnEliminar.textContent = 'Cancelar';
+    btnEliminar.onclick = function () {
+        cargarListaDonaciones();
+    };
+}
+
+async function actualizarDonacion(idDonacion) {
+    event.preventDefault();
+    const fila = document.querySelector(`tr[data-id="${idDonacion}"]`);
+    const celdas = fila.querySelectorAll('td');
+    const donacion = {
+        tipoDonante: celdas[0].querySelector('input').value,
+        monto: celdas[1].querySelector('input').value,
+        fecha: celdas[2].querySelector('input').value
+    };
+
+    let apiUrlEndpoint = `${apiUrl}/Editar`;
+
+    try {
+        const response = await fetch(apiUrlEndpoint, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(donacion)
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200) {
+            cargarListaDonaciones();
+        } else {
+            console.error('Error en la respuesta de la API:', data.mensaje);
+        }
+    } catch (error) {
+        console.error('Error al actualizar al donacion:', error);
+    }
+}
+
+document.getElementById('RegistrarDonacion').addEventListener('submit', GuardarDonacion);
