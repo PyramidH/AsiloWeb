@@ -90,8 +90,9 @@ function isActive() {
         }
     }
 }
-
-document.getElementById('logOut').addEventListener('click', logOut);
+if (document.getElementById('logOut') != null) {
+    document.getElementById('logOut').addEventListener('click', logOut);
+}
 
 
 
