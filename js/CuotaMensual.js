@@ -18,8 +18,8 @@ async function cargarCuotaMensual() {
             const tableHeader = document.createElement('thead');
             tableHeader.innerHTML = `
                 <tr>
-                    <th>IDCuota</th>
-                    <th>IDInterno</th>
+                    <th>Id</th>
+                    <th>IdInterno</th>
                     <th>Monto</th>
                     <th>Fecha</th>
                     <th>Descripcion</th>
@@ -61,7 +61,7 @@ async function cargarCuotaMensual() {
 async function GuardarCuotaMensual(event) { 
     event.preventDefault();
 
-    const cuota = {
+    const GuardarEn = {
         idInterno: document.getElementById('ID Interno').value,
         monto: document.getElementById('Monto').value,
         fecha: document.getElementById('Fecha').value,
@@ -77,7 +77,7 @@ async function GuardarCuotaMensual(event) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(cuota)
+                body: JSON.stringify(GuardarEn)
                 
             });
             const data = await response.json();
@@ -94,9 +94,9 @@ async function GuardarCuotaMensual(event) {
     }
 }
 
-async function eliminarCuotaMensual(idCuota) {
-    let apiUrlEndpoint = `${apiUrl}/Eliminar/${idCuota}`;
-    const id = { idCuota: idCuota}
+async function eliminarCuotaMensual(idCuotaMensual) {
+    let apiUrlEndpoint = `${apiUrl}/Eliminar/${idCuotaMensual}`;
+    const id = { idCuotaMensual: idCuotaMensual}
     try {
         const response = await fetch(apiUrlEndpoint, {
             method: 'DELETE',
@@ -149,9 +149,9 @@ function editarCuotaMensual(id) {
     };
 }
 
-async function actualizarCuota(id) {
+async function actualizarCuota(idCuotaMensual) {
     event.preventDefault();
-    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    const fila = document.querySelector(`tr[data-id="${idCuotaMensual}"]`);
     const celdas = fila.querySelectorAll('td');
     const cuota = {
         idCuota: celdas[0].querySelector('input').value,

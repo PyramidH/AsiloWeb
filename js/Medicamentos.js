@@ -62,7 +62,7 @@ async function cargarListaMedicamentos() {
 async function GuardarMedicamento(event) { 
     event.preventDefault();
 
-    const medicamento = {
+    const GuardarEn = {
         nombre: document.getElementById('nombre').value,
         descripcion: document.getElementById('descripcion').value,
         costo: document.getElementById('costo').value
@@ -77,7 +77,7 @@ async function GuardarMedicamento(event) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(medicamento)
+                body: JSON.stringify(GuardarEn)
                 
             });
             const data = await response.json();
@@ -92,8 +92,13 @@ async function GuardarMedicamento(event) {
         } catch (error) {
             console.error('Error al guardar el medicamento:', error);
         }
-    }
 
+    }
+    function limpiarFormularioMedicamento() {
+        document.getElementById('nombre').value = '';
+        document.getElementById('descripcion').value = '';
+        document.getElementById('costo').value = '';
+    }
 
     
 // Función para eliminar un medicamento
@@ -121,14 +126,8 @@ async function eliminarMedicamento(idMedicamento) {
     }
 }
 
-function limpiarFormularioMedicamento() {
-    document.getElementById('nombre').value = '';
-    document.getElementById('descripcion').value = '';
-    document.getElementById('costo').value = '';
-}
-
-function editarMedicamento(id) {
-    const fila = document.querySelector(`tr[data-id="${id}"]`);
+function editarMedicamento(idMedicamento) {
+    const fila = document.querySelector(`tr[data-id="${idMedicamento}"]`);
     const celdas = fila.querySelectorAll('td');
     celdas.forEach(function (celda, index) {
         if (index < celdas.length - 1) {
@@ -142,7 +141,7 @@ function editarMedicamento(id) {
     btnEditar.classList.remove("btn-primary");
     btnEditar.classList.add("btn-save");
     btnEditar.onclick = function () {
-        actualizarMedicamento(id);
+        actualizarMedicamento(idMedicamento);
     };
     const btnEliminar = fila.querySelector('button.btn-cancel');
     btnEliminar.textContent = 'Cancelar';
@@ -151,9 +150,9 @@ function editarMedicamento(id) {
     };
 }
 
-async function actualizarMedicamento(id) {
+async function actualizarMedicamento(idMedicamento) {
     event.preventDefault();
-    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    const fila = document.querySelector(`tr[data-id="${idMedicamento}"]`);
     const celdas = fila.querySelectorAll('td');
     const medicamento = {
         idMedicamento: celdas[0].querySelector('input').value,
