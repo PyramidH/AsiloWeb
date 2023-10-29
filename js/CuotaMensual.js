@@ -2,7 +2,7 @@ const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/CuotaMensual'; // Re
 const cuotaMensualList = document.getElementById('Cuota Mensual-list');
 
 // Función para cargar la lista de Cuota Mensual
-async function cargarCuotaMensual() {
+async function cargarListaCuotaMensual() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
         const data = await response.json();
@@ -28,10 +28,11 @@ async function cargarCuotaMensual() {
             `;
             table.appendChild(tableHeader);
 
-            // Crear filas de la tabla con datos de productos
+            // Crear filas de la tabla con datos de cuota mensual
             const tableBody = document.createElement('tbody');
             data.response.forEach(CuotaMensual => {
                 const row = document.createElement('tr');
+                row.setAttribute('data-id', CuotaMensual.idCuota);
                 row.innerHTML = `
                     <td>${CuotaMensual.idCuota}</td>
                     <td>${CuotaMensual.idInterno}</td>
@@ -61,32 +62,29 @@ async function cargarCuotaMensual() {
 async function GuardarCuotaMensual(event) { 
     event.preventDefault();
 
-    const GuardarEn = {
+    const CuotaMensual = {
         idInterno: document.getElementById('ID Interno').value,
         monto: document.getElementById('Monto').value,
         fecha: document.getElementById('Fecha').value,
-        descripcion: document.getElementById('Descripcion').value,
+        descripcion: document.getElementById('Descripcion').value
     };
 
     let apiUrlEndpoint = `${apiUrl}/Guardar`;
         
-        
-        try {
-            const response = await fetch(apiUrlEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(GuardarEn)
-                
-            });
-            const data = await response.json();
+    try {
+        const response = await fetch(apiUrlEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(CuotaMensual)
+        });
+        const data = await response.json();
 
-            if (response.status == '200') {
-                cargarCuotaMensual();
-                limpiarFormularioCuota();
-            }
-         else {
+        if (response.status === 200) {
+            cargarListaCuotaMensual();
+            limpiarFormularioCuotaMensual();
+        } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
     } catch (error) {
@@ -96,7 +94,8 @@ async function GuardarCuotaMensual(event) {
 
 async function eliminarCuotaMensual(idCuotaMensual) {
     let apiUrlEndpoint = `${apiUrl}/Eliminar/${idCuotaMensual}`;
-    const id = { idCuotaMensual: idCuotaMensual}
+    const id = { idCuotaMensual: idCuotaMensual};
+    
     try {
         const response = await fetch(apiUrlEndpoint, {
             method: 'DELETE',
@@ -109,7 +108,7 @@ async function eliminarCuotaMensual(idCuotaMensual) {
         const data = await response.json();
 
         if (response.status === 200) {
-            cargarCuotaMensual();
+            cargarListaCuotaMensual();
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
@@ -118,11 +117,11 @@ async function eliminarCuotaMensual(idCuotaMensual) {
     }
 }
 
-function limpiarFormularioCuota() {
-    document.getElementById('Id interno').value = '';
-    document.getElementById('monto').value = '';
-    document.getElementById('fecha').value = '';
-    document.getElementById('descripcion').value = '';
+function limpiarFormularioCuotaMensual() {
+    document.getElementById('ID Interno').value = '';
+    document.getElementById('Monto').value = '';
+    document.getElementById('Fecha').value = '';
+    document.getElementById('Descripcion').value = '';
 }
 
 function editarCuotaMensual(id) {
@@ -140,18 +139,19 @@ function editarCuotaMensual(id) {
     btnEditar.classList.remove("btn-primary");
     btnEditar.classList.add("btn-save");
     btnEditar.onclick = function () {
-        actualizarCuota(id);
+        actualizarCuotaMensual(id);
     };
+
     const btnEliminar = fila.querySelector('button.btn-cancel');
     btnEliminar.textContent = 'Cancelar';
     btnEliminar.onclick = function () {
-        cargarListaCuota();
+        cargarListaCuotaMensual();
     };
 }
 
-async function actualizarCuota(idCuotaMensual) {
+async function actualizarCuotaMensual(id, event) {
     event.preventDefault();
-    const fila = document.querySelector(`tr[data-id="${idCuotaMensual}"]`);
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
     const celdas = fila.querySelectorAll('td');
     const cuota = {
         idCuota: celdas[0].querySelector('input').value,
@@ -175,7 +175,7 @@ async function actualizarCuota(idCuotaMensual) {
         const data = await response.json();
 
         if (response.status === 200) {
-            cargarListaCuota();
+            cargarListaCuotaMensual();
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }

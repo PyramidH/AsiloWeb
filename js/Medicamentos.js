@@ -1,7 +1,7 @@
-const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Medicamentos'; // Reemplaza con la URL de tu API
-const medicamentosList = document.getElementById('Medicamentos-list');
+const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Medicamentos';
+const MedicamentosList = document.getElementById('Medicamentos-list');
 
-// Función para cargar la lista de medicamentos
+// Función para cargar la lista de Medicamentos
 async function cargarListaMedicamentos() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
@@ -9,7 +9,7 @@ async function cargarListaMedicamentos() {
 
         if (response.status === 200) {
             // Limpiar la lista
-            medicamentosList.innerHTML = '';
+            MedicamentosList.innerHTML = '';
 
             // Crear una tabla con clases de Bootstrap
             const table = document.createElement('table');
@@ -32,6 +32,7 @@ async function cargarListaMedicamentos() {
             const tableBody = document.createElement('tbody');
             data.response.forEach(medicamento => {
                 const row = document.createElement('tr');
+                row.setAttribute('data-id', medicamento.idMedicamento);
                 row.innerHTML = `
                     <td>${medicamento.idMedicamento}</td>
                     <td>${medicamento.nombre}</td>
@@ -48,63 +49,51 @@ async function cargarListaMedicamentos() {
 
             table.appendChild(tableBody);
 
-            medicamentosList.appendChild(table);
+            MedicamentosList.appendChild(table);
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
     } catch (error) {
-        console.error('Error al cargar la lista de medicamentos:', error);
+        console.error('Error al cargar la lista de Medicamentos:', error);
     }
 }
-
-// Función para guardar cambios en un medicamento
 
 async function GuardarMedicamento(event) { 
     event.preventDefault();
 
-    const GuardarEn = {
-        nombre: document.getElementById('nombre').value,
-        descripcion: document.getElementById('descripcion').value,
-        costo: document.getElementById('costo').value
+    const Medicamento = {
+        nombre: document.getElementById('Nombre').value,
+        descripcion: document.getElementById('Descripcion').value,
+        costo: document.getElementById('Costo').value
     };
 
     let apiUrlEndpoint = `${apiUrl}/Guardar`;
         
-        
-        try {
-            const response = await fetch(apiUrlEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(GuardarEn)
-                
-            });
-            const data = await response.json();
+    try {
+        const response = await fetch(apiUrlEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Medicamento)
+        });
+        const data = await response.json();
 
-            if (response.status == 200) {
-                cargarListaMedicamentos();
-                limpiarFormularioMedicamento();
-            }
-         else {
-                console.error('Error en la respuesta de la API:', data.mensaje);
-            }
-        } catch (error) {
-            console.error('Error al guardar el medicamento:', error);
+        if (response.status === 200) {
+            cargarListaMedicamentos();
+            limpiarFormularioMedicamentos();
+        } else {
+            console.error('Error en la respuesta de la API:', data.mensaje);
         }
-
+    } catch (error) {
+        console.error('Error al guardar el Medicamento:', error);
     }
-    function limpiarFormularioMedicamento() {
-        document.getElementById('nombre').value = '';
-        document.getElementById('descripcion').value = '';
-        document.getElementById('costo').value = '';
-    }
+}
 
-    
-// Función para eliminar un medicamento
 async function eliminarMedicamento(idMedicamento) {
     let apiUrlEndpoint = `${apiUrl}/Eliminar/${idMedicamento}`;
-    const id = { idMedicamento: idMedicamento}
+    const id = { idMedicamento: idMedicamento};
+    
     try {
         const response = await fetch(apiUrlEndpoint, {
             method: 'DELETE',
@@ -126,8 +115,14 @@ async function eliminarMedicamento(idMedicamento) {
     }
 }
 
-function editarMedicamento(idMedicamento) {
-    const fila = document.querySelector(`tr[data-id="${idMedicamento}"]`);
+function limpiarFormularioMedicamentos() {
+    document.getElementById('Nombre').value = '';
+    document.getElementById('Descripcion').value = '';
+    document.getElementById('Costo').value = '';
+}
+
+function editarMedicamento(id) {
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
     const celdas = fila.querySelectorAll('td');
     celdas.forEach(function (celda, index) {
         if (index < celdas.length - 1) {
@@ -141,8 +136,9 @@ function editarMedicamento(idMedicamento) {
     btnEditar.classList.remove("btn-primary");
     btnEditar.classList.add("btn-save");
     btnEditar.onclick = function () {
-        actualizarMedicamento(idMedicamento);
+        actualizarMedicamento(id);
     };
+
     const btnEliminar = fila.querySelector('button.btn-cancel');
     btnEliminar.textContent = 'Cancelar';
     btnEliminar.onclick = function () {
@@ -150,16 +146,16 @@ function editarMedicamento(idMedicamento) {
     };
 }
 
-async function actualizarMedicamento(idMedicamento) {
+async function actualizarMedicamento(id, event) {
     event.preventDefault();
-    const fila = document.querySelector(`tr[data-id="${idMedicamento}"]`);
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
     const celdas = fila.querySelectorAll('td');
-    const medicamento = {
+    const Medicamento = {
         idMedicamento: celdas[0].querySelector('input').value,
         nombre: celdas[1].querySelector('input').value,
         descripcion: celdas[2].querySelector('input').value,
         costo: celdas[3].querySelector('input').value,
-        Existencia: celdas[4].querySelector('input').value
+        existencia: celdas[4].querySelector('input').value
     };
 
     let apiUrlEndpoint = `${apiUrl}/Editar`;
@@ -170,7 +166,7 @@ async function actualizarMedicamento(idMedicamento) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(medicamento)
+            body: JSON.stringify(Medicamento)
         });
 
         const data = await response.json();
@@ -181,8 +177,8 @@ async function actualizarMedicamento(idMedicamento) {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
     } catch (error) {
-        console.error('Error al actualizar el Medicamento:', error);
+        console.error('Error al actualizar Medicamento:', error);
     }
 }
 
-document.getElementById('RegistrarMedicamento').addEventListener('submit', GuardarMedicamento);
+document.getElementById('RegistrarMedicamentos').addEventListener('submit', GuardarMedicamento);
