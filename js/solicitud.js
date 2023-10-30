@@ -20,9 +20,7 @@ async function cargarListaCitas() {
                     <th>ID</th>
                     <th>Fecha y Hora</th>
                     <th>Motivo</th>
-                    <th>Costo</th>
                     <th>Interno</th>
-                    <th>Médico</th>
                     <th>Enfermero</th>
                     <th>Opciones</th>
                 </tr>
@@ -31,20 +29,20 @@ async function cargarListaCitas() {
             const tableBody = document.createElement('tbody');
             data.response.forEach(cita => {
                 const row = document.createElement('tr');
-                const fechaCita = new Date(cita.fechaHora);
-                const fechacita1 = fechaCita.toISOString().split('T')[0];
-                var nomDoctor = "Pendiente"
-                if (cita.idMedicoNavigation != null) {
-                    nomDoctor = cita.idMedicoNavigation.nombre + " " + cita.idMedicoNavigation.apellido
-                }
                 row.setAttribute('data-id', cita.idCita);
+                var fechaOriginal = cita.fechaHora;
+                var fecha = new Date(fechaOriginal);
+                var dia = fecha.getDate();
+                var mes = fecha.getMonth() + 1;
+                var año = fecha.getFullYear();
+                var hora = fecha.getHours().toString();
+                var minutos = fecha.getMinutes().toString();
+                var fechaFormateada = dia + "-" + mes + "-" + año + " " + hora + ":" + minutos;
                 row.innerHTML = `
                     <td>${cita.idCita}</td>
-                    <td>${fechacita1}</td>
+                    <td>${fechaFormateada}</td>
                     <td>${cita.motivo}</td>
-                    <td>${cita.costo}</td>
                     <td>${cita.idInternoNavigation.nombre + " " + cita.idInternoNavigation.apellido}</td>
-                    <td>${nomDoctor}</td> 
                     <td>${cita.idEnfermeroNavigation.nombre + " " + cita.idEnfermeroNavigation.apellido}</td>
                     <td>
                     <button class="btn btn-primary" onclick="editarCita(${cita.idCita})">Editar</button>
@@ -106,6 +104,101 @@ function limpiarFormulario() {
     document.getElementById('internos').value = '';
     document.getElementById('enfermeros').value = '';
     document.getElementById('motivo').value = '';
+}
+
+async function eliminarCita(idCita) {
+    let apiUrlEndpoint = `${apiUrl}/Eliminar/${idCita}`;
+    const id = { idCita: idCita }
+    try {
+        const response = await fetch(apiUrlEndpoint, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(id)
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200) {
+            cargarListaCitas();
+        } else {
+            console.error('Error en la respuesta de la API:', data.mensaje);
+        }
+    } catch (error) {
+        console.error('Error al eliminar la cita', error);
+    }
+}
+
+function editarCita(id) {
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    const celdas = fila.querySelectorAll('td');
+    celdas.forEach(function (celda, index) {
+        if (index < celdas.length - 1) {
+            const valorOriginal = celda.innerText;
+            switch (index) {
+                case 2:
+                    celda.innerHTML = `<input type="text" style='width:100%' value="${valorOriginal}">`;
+                    break;
+                case 3:
+                    celda.innerHTML = '';
+                    celda.appendChild(cmbInternos.cloneNode(true));
+                    break;
+                case 4:
+                    celda.innerHTML = '';
+                    celda.appendChild(cmbEnfermeros.cloneNode(true));
+                    break;
+            }
+        }
+    });
+
+    const btnEditar = fila.querySelector('button.btn-primary');
+    btnEditar.textContent = 'Guardar';
+    btnEditar.classList.remove("btn-primary");
+    btnEditar.classList.add("btn-save");
+    btnEditar.onclick = function () {
+        actualizarcita(id);
+    };
+    const btnEliminar = fila.querySelector('button.btn-cancel');
+    btnEliminar.textContent = 'Cancelar';
+    btnEliminar.onclick = function () {
+        cargarListaCitas();
+    };
+}
+
+async function actualizarcita(id) {
+    event.preventDefault();
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
+    const celdas = fila.querySelectorAll('td');
+    const cita = {
+        idCita: celdas[0].value,
+        motivo: celdas[2].querySelector('input').value,
+        idInterno: celdas[3].querySelector('select').value,
+        idEnfermero: celdas[4].querySelector('select').value
+    };
+
+    console.log(cita);
+    let apiUrlEndpoint = `${apiUrl}/Editar`;
+
+    try {
+        const response = await fetch(apiUrlEndpoint, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cita)
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200) {
+            cargarListaCitas();
+        } else {
+            console.error('Error en la respuesta de la API:', data.mensaje);
+        }
+    } catch (error) {
+        console.error('Error al actualizar la cita:', error);
+    }
 }
 
 

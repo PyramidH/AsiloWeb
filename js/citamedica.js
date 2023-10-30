@@ -220,10 +220,6 @@ async function actualizarcita(id) {
 document.getElementById('RegistrarCita').addEventListener('submit', guardarcita);
 
 
-//Función para llenar el select
-
-const apiUrl1 = 'http://malvarado-001-site1.atempurl.com/api/Enfermeros';
-
 async function cargarSelectInterno() {
 
     try {
