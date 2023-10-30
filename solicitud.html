@@ -3,17 +3,15 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DRYME - Free Laundry Service Website Template</title>
+    <title>CottonCare - Solicitud Médica</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
@@ -25,9 +23,16 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body onload="cargarSelectInterno(),cargarSelectEnfermero(), cargarListaCitas()">
     <!-- Topbar Start -->
-    <div class="container-fluid bg-primary py-3"></div>
+    <div class="container-fluid bg-primary py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Topbar End -->
 
     <!-- Navbar Start -->
@@ -35,25 +40,13 @@
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 pl-3 pl-lg-5">
                 <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-secondary"><span class="text-primary">SYS</span>CO</h1>
+                    <h1 class="m-0 text-secondary"><span class="text-primary">Cotton</span>Care</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Services</a>
-                        <a href="pricing.html" class="nav-item nav-link">Pricing</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                <a href="single.html" class="dropdown-item">Blog Detail</a>
-                            </div>
-                        </div>
-                        <a href="index.html" class="nav-item nav-link active">Contact</a>
                     </div>
                 </div>
             </nav>
@@ -63,66 +56,99 @@
 
 
     <!-- Page Header Start -->
-    <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5">
-        <div class="container py-2">
-            <div class="row align-items-center py-4">
+    <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2">
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Navbar Vertical -->
+    <span class='fondo-barra-vertical'></span>
+    <nav class="barra-vertical">
+        <h4 class="font-weight-bold">MÉDICO GÉNERAL <i class="fas fa-user-md"></i></h4>
+        <ul class="list-group">
+            <a class="d-flex justify-content-between align-items-center">
+                Solicitud
+                <i class="fas fa-notes-medical"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center" href="enfermero.html">
+                Enfermero
+                <i class="fas fa-user-nurse"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center" id="logOut" href="login.html">
+                Cerrar Sesión
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </ul>
+    </nav>
+    <!-- end Navbar Vertical -->
+
+    <!--    Tabla de Solicitudes    -->
+    <div class="dashboard">
+        <div class="container-fluid py-4">
+            <div class="container" style="max-width: 1250px;">
+                <h2>Lista de Citas Médicas</h2>
+                <div class="TableV2 py-2" id="cita-list"></div>
             </div>
         </div>
     </div>
-    <!-- Page Header Start -->
+    <!--    Final Tabla de Solicitudes    -->
 
-    <!-- Contact Start -->
-    <div class="container-fluid py-0">
-        <div class="container" style="max-width: 900px;">
-            <h1 class="display-8 text-center mb-5">Registrarso de Enfermeros</h1>
-            <div class="row">
-                <div class="col-12">
-                    <div class="contact-form">
-                        <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                            <div class="form-row justify-content-center">
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Usuario"
-                                            required="required"
-                                            data-validation-required-message="Escriba su usuario" />
-                                        <p class="help-block text-danger"></p>
+    <!-- Formulario -->
+    <div class="dashboard">
+        <div class="container-fluid py-4">
+            <div class="container" style="max-width: 900px;">
+                <h2>Ingresar Solicitud</h2>
+                <div class="row py-2">
+                    <div class="col-12">
+                        <div class="contact-form">
+                            <div id="success"></div>
+                            <form id="RegistrarSolicitud">
+                                <div class="form-row">
+                                    <div class="col-md-3">
+                                        <div class="control-group">
+                                            <select class="form-control" id="internos" required="required">
+                                                <option value="" disabled selected>Interno</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="control-group">
+                                            <select class="form-control" id="especialidad" required="required">
+                                                <option value="Especialidad" disabled selected>Especialidad</option>
+                                                <option value="Osteopatía">Osteopatía</option>
+                                                <option value="Cardiología">Cardiología</option>
+                                                <option value="Urología">Urología</option>
+                                                <option value="Gastroenterología">Gastroenterología</option>
+                                                <option value="Ginecología">Ginecología</option>
+                                                <option value="Dermatología">Dermatología</option>
+                                                <option value="Endocrinología">Endocrinología</option>
+                                                <option value="Nutriología">Nutriología</option>
+                                                <option value="Fisioterapia">Fisioterapia</option>
+                                                <option value="Rehabilitacion">Rehabilitacion</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="control-group">
+                                            <select class="form-control" id="enfermeros" required="required">
+                                                <option value="" disabled selected>Enfermero</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div><div class="form-row justify-content-center">
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Nombre"
-                                            required="required"
-                                            data-validation-required-message="Escriba su usuario" />
-                                        <p class="help-block text-danger"></p>
+                                <div class="form-row py-3">
+                                    <div class="col-md-9">
+                                        <div class="control-group">
+                                            <textarea class="form-control" rows="4" id="motivo" placeholder="Motivo"
+                                                required="required"></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div><div class="form-row justify-content-center">
-                            <div class="col-md-6">
-                                <div class="control-group">
-                                    <input type="text" class="form-control" id="name" placeholder="Email"
-                                        required="required"
-                                        data-validation-required-message="Escriba su usuario" />
-                                    <p class="help-block text-danger"></p>
+                                <div class="py-4">
+                                    <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
+                                    <a href="dashboardMedicoGeneral.html" class="btn btn-cancel py-3 px-5">Regresar</a>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                            <div class="form-row justify-content-center">
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Contraseña"
-                                            required="required"
-                                            data-validation-required-message="Escriba su usuario" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center" style="margin-top: 10px;">
-                                <a href="login.html" class="btn btn-secondary py-3 px-5" type="submit" id="sendMessageButton">Registrarse</a>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -130,11 +156,14 @@
     </div>
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white py-4 px-sm-3 px-md-5" style=" margin-top: 100px;">
-        <p class="m-0 text-center text-white">
-            &copy; <a class="text-white font-weight-medium" href="#">Your Site Name</a>. All Rights Reserved. Designed by
-            <a class="text-white font-weight-medium" href="https://htmlcodex.com">HTML Codex</a>
-        </p>
+    <div class="footer">
+        <div class="container-fluid bg-dark text-white py-4 px-sm-3 px-md-5">
+            <p class="m-0 text-center text-white">
+                &copy; <a class="text-white font-weight-medium" href="#">Cabeza de Algodon</a> Todos los derechos
+                reservados.
+                Diseño por UMG
+            </p>
+        </div>
     </div>
     <!-- Footer End -->
 
@@ -151,12 +180,9 @@
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/solicitud.js"></script>
 </body>
 
 </html>

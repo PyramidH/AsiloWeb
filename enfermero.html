@@ -11,7 +11,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
@@ -22,11 +22,11 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
-    
+
 </head>
 
 <body onload="cargarListaEnfermeros()">
-    
+
     <!-- Topbar Start -->
     <div class="container-fluid bg-primary py-3">
         <div class="container">
@@ -55,7 +55,7 @@
             </nav>
         </div>
     </div>
-    <!-- Navbar End -->  
+    <!-- Navbar End -->
 
 
     <!-- Page Header Start -->
@@ -64,7 +64,7 @@
     <!-- Page Header End -->
 
     <!-- Contenido principal del dashboard -->
-    <span class = 'fondo-barra-vertical'></span>
+    <span class='fondo-barra-vertical'></span>
     <nav class="barra-vertical">
         <h4 class="font-weight-bold">MÉDICO GÉNERAL <i class="fas fa-user-md"></i></h4>
         <ul class="list-group">
@@ -76,7 +76,7 @@
                 Enfermero
                 <i class="fas fa-user-nurse"></i>
             </a>
-            <a class="d-flex justify-content-between align-items-center" id="logOut" href="login.html" >
+            <a class="d-flex justify-content-between align-items-center" id="logOut" href="login.html">
                 Cerrar Sesión
                 <i class="fas fa-sign-out-alt"></i>
             </a>
@@ -86,59 +86,59 @@
 
 
     <!--    Intern Table    -->
-    <span class = 'fondo-barra-vertical'></span>
+    <span class='fondo-barra-vertical'></span>
     <div class="dashboard">
-    <div class="container-fluid py-4">
-        <div class="container" style="max-width: 1200px;">
-            <!-- Intern List -->
-            <h2>Lista de Enfermeros</h2>
-            <div class="TableV2 py-2" id="enfermero-list"></div>
+        <div class="container-fluid py-4">
+            <div class="container" style="max-width: 1200px;">
+                <!-- Intern List -->
+                <h2>Lista de Enfermeros</h2>
+                <div class="TableV2 py-2" id="enfermero-list"></div>
+            </div>
         </div>
     </div>
-</div>
     <!--    Intern Table End    -->
 
-    
-    <div class="dashboard">
+
     <!-- Formulario Enfermero -->
-    <div class="container-fluid py-4">
-        <div class="container" style="max-width: 900px;">
-            <h2>Ingresar Enfermero</h2>
-            <div class="row py-2">
-                <div class="col-12">
-                    <div class="contact-form">
-                        <div id="success"></div>
-                        <form name="RegistrarEnfermero" id="RegistrarEnfermero">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="nombreenfer" placeholder="Nombre"
-                                            required="required"/>
-                                        <p class="help-block text-danger"></p>
+    <div class="dashboard">
+        <div class="container-fluid py-4">
+            <div class="container" style="max-width: 900px;">
+                <h2>Ingresar Enfermero</h2>
+                <div class="row py-2">
+                    <div class="col-12">
+                        <div class="contact-form">
+                            <div id="success"></div>
+                            <form name="RegistrarEnfermero" id="RegistrarEnfermero">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="control-group">
+                                            <input type="text" class="form-control" id="nombreenfer"
+                                                placeholder="Nombre" required="required" />
+                                            <p class="help-block text-danger"></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row py-3">
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="apellidoenfer" placeholder="Apellido"
-                                            required="required"/>
-                                        <p class="help-block text-danger"></p>
+                                <div class="form-row py-3">
+                                    <div class="col-md-6">
+                                        <div class="control-group">
+                                            <input type="text" class="form-control" id="apellidoenfer"
+                                                placeholder="Apellido" required="required" />
+                                            <p class="help-block text-danger"></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>                                           
-                            <div class="py-4">
-                                <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
-                                <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
-                            </div>
-                        </form>
+                                <div class="py-4">
+                                    <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
+                                    <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Formulario Enfermero -->
+    <!-- Formulario Enfermero -->
 
     <!-- Footer Start -->
     <div class="footer">
@@ -165,7 +165,7 @@
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    
+
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/enfermero.js"></script>
