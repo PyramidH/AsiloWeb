@@ -29,10 +29,7 @@ async function cargarListaCitas() {
                     <th>ID</th>
                     <th>Fecha y Hora</th>
                     <th>Motivo</th>
-                    <th>Costo</th>
                     <th>Interno</th>
-                    <th>Médico</th>
-                    <th>Enfermero</th>
                     <th>Opciones</th>
                 </tr>
             `;
@@ -41,24 +38,29 @@ async function cargarListaCitas() {
             // Crear filas de la tabla con datos de citas
             const tableBody = document.createElement('tbody');
             data.response.forEach(cita => {
-                const row = document.createElement('tr');
-                const fechaCita = new Date(cita.fechaHora);
-                const fechacita1 = fechaCita.toISOString().split('T')[0];
-                row.setAttribute('data-id', cita.idCita);
-                row.innerHTML = `
-                    <td>${cita.idCita}</td>
-                    <td>${fechacita1}</td>
-                    <td>${cita.motivo}</td>
-                    <td>${cita.costo}</td>
-                    <td>${cita.idInternoNavigation.nombre + " " + cita.idInternoNavigation.apellido}</td>
-                    <td>${cita.idMedicoNavigation.nombre + " " + cita.idMedicoNavigation.apellido}</td> 
-                    <td>${cita.idEnfermeroNavigation.nombre + " " + cita.idEnfermeroNavigation.apellido}</td>
-                    <td>
-                    <button class="btn btn-primary" onclick="editarCita(${cita.idCita})">Editar</button>
-                    <button class="btn btn-cancel" onclick="eliminarCita(${cita.idCita})">Eliminar</button>
-                    </td>
-                `;
-                tableBody.appendChild(row);
+                if (cita.estado == 'Solicitud') {
+                    const row = document.createElement('tr');
+                    row.setAttribute('data-id', cita.idCita);
+                    var fechaOriginal = cita.fechaHora;
+                    var fecha = new Date(fechaOriginal);
+                    var dia = fecha.getDate();
+                    var mes = fecha.getMonth() + 1;
+                    var año = fecha.getFullYear();
+                    var hora = fecha.getHours().toString();
+                    var minutos = fecha.getMinutes().toString();
+                    var fechaFormateada = dia + "-" + mes + "-" + año + " " + hora + ":" + minutos;
+                    row.innerHTML = `
+                        <td>${cita.idCita}</td>
+                        <td>${fechaFormateada}</td>
+                        <td>${cita.motivo}</td>
+                        <td>${cita.idInternoNavigation.nombre + " " + cita.idInternoNavigation.apellido}</td>
+                        <td>
+                        <button class="btn btn-primary" onclick="editarCita(${cita.idCita})">Asignar</button>
+                        <button class="btn btn-cancel" onclick="eliminarCita(${cita.idCita})">Denegar</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                }
             });
 
             table.appendChild(tableBody);
@@ -80,7 +82,7 @@ async function guardarcita(event) {
         costo: document.getElementById('costo').value,
         idInterno: document.getElementById('internos').value,
         idMedico: document.getElementById('medicos').value,
-        idEnfermero: document.getElementById('enfermeros').value                
+        idEnfermero: document.getElementById('enfermeros').value
     };
     //console.log(cita);
     let apiUrlEndpoint = `${apiUrl}/Guardar`;
@@ -147,21 +149,21 @@ function editarCita(id) {
         if (index < celdas.length - 1) {
             const valorOriginal = celda.innerText;
             celda.innerHTML = `<input type="text" style='width:100%' value="${valorOriginal}">`;
-            if(index == 1){
+            if (index == 1) {
                 celda.innerHTML = `<input type="date" style='width:100%' value="${valorOriginal}">`;
-                }
-            if(index == 4){
+            }
+            if (index == 4) {
                 celda.innerHTML = '';
                 celda.appendChild(cmbInternos.cloneNode(true));
-                }
-            if(index == 5){
+            }
+            if (index == 5) {
                 celda.innerHTML = '';
                 celda.appendChild(cmbMedicos.cloneNode(true));
-                }
-            if(index == 6){
+            }
+            if (index == 6) {
                 celda.innerHTML = '';
                 celda.appendChild(cmbEnfermeros.cloneNode(true));
-                }
+            }
         }
     });
 
