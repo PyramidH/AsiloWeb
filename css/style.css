@@ -10812,6 +10812,12 @@ h6,
   box-shadow: 0 0 0 0.2rem rgba(60, 95, 139, 0.5);
 }
 
+.borde {
+  border: 3px solid var(--primary);
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
 .barra-vertical {
   position: fixed;
   width: 250px;
@@ -10918,7 +10924,7 @@ h6,
   }
 
   .TableV2,
-  table td{
+  table td {
     display: block;
     width: auto;
   }

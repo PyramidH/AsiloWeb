@@ -1,4 +1,4 @@
-const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Internos'; // Reemplaza con la URL de tu API
+const apiUrl = 'http://malvarado-001-site1.atempurl.com/api/Internos';
 
 const internList = document.getElementById('Intern-list');
 

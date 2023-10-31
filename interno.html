@@ -30,8 +30,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                    </div>
                 </div>
             </div>
         </div>
@@ -50,9 +48,6 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="Menu.html" class="nav-item nav-link">Menú</a>
-                        <a href="about.html" class="nav-item nav-link">Programar Cita Médica</a>
-                        <a href="index.html" class="nav-item nav-link active">Cerrar Sesión</a>
                     </div>
                 </div>
             </nav>
@@ -60,127 +55,182 @@
     </div>
     <!-- Navbar End -->
 
-
     <!-- Page Header Start -->
-    <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5">
-        <div class="container py-2">
-            <div class="row align-items-center py-4">
-                <div class="col-md-6 text-center text-md-left">
-                    <h1 style="color:#194376">Internos</h1>
-                </div>
-            </div>
-        </div>
+    <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2">
     </div>
-    <!-- Page Header Start -->
+    <!-- Page Header End -->
 
+    <!-- Vertical Navbar-->
+    <span class="fondo-barra-vertical"></span>
+    <nav class="barra-vertical">
+        <h4 class="font-weight-bold mb-4 ml-4">ASILO <i class="fas fa-hospital-user"></i></h4>
+        <ul class="list-group">
+            <a class="d-flex justify-content-between align-items-center" href="donaciones.html">
+                Donación
+                <i class="fas fa-hand-holding-medical"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center" href="gastosOperativos.html">
+                Gastos Operativos
+                <i class="fas fa-money-check"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center" href="CuotaMensual.html">
+                Cuota Mensual
+                <i class="fas fa-coins"></i>
+            </a>
+        </ul>
+        <h4 class="font-weight-bold mb-2 ml-4 mt-4">REPORTES <i class="fas fa-hospital-user"></i></h4>
+        <ul class="list-group">
+            <a class="d-flex justify-content-between align-items-center">
+                Ficha Médica
+                <i class="fas fa-file-medical-alt"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center">
+                Costos por Paciente
+                <i class="fas fa-donate"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center">
+                Listado de Visitas
+                <i class="fas fa-clipboard-list"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center">
+                Cobros por Paciente
+                <i class="fas fa-procedures"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center">
+                Pagos a Fundación
+                <i class="fas fa-hand-holding-usd"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center">
+                Donaciones y Cobros
+                <i class="fas fa-hand-holding-usd"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center">
+                Exámenes
+                <i class="fas fa-notes-medical"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center" href="Medicamentos.html">
+                Medicamentos
+                <i class="fas fa-pills"></i>
+            </a>
+            <a class="d-flex justify-content-between align-items-center" id="logOut" href="login.html">
+                Cerrar Sesión
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </ul>
+    </nav>
+    <!-- Vertical Navbar End-->
 
     <!-- Interno Start -->
-
     <!--    Intern Table    -->
-    <div class="container-fluid py-4">
-        <div class="container" style="max-width: 1250px;">
-            <!-- Intern List -->
-            <h2>Lista de Internos</h2>
-            <div class="TableV2 py-2" id="Intern-list"></div>
+    <div class="dashboard">
+        <div class="container-fluid py-4">
+            <div class="container" style="max-width: 1250px;">
+                <!-- Intern List -->
+                <h2>Lista de Internos</h2>
+                <div class="TableV2 py-2" id="Intern-list"></div>
+            </div>
         </div>
     </div>
     <!--    Intern Table End    -->
 
     <!--    New Intern  -->
-    <div class="container-fluid py-4">
-        <div class="container" style="max-width: 900px;">
-            <h2>Ingresar Interno</h2>
-            <div class="row py-2">
-                <div class="col-12">
-                    <div class="contact-form">
-                        <div id="success"></div>
-                        <form name="registrarInterno" id="registrarInterno">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="nombre" placeholder="Nombre"
-                                            required="required" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="apellido" placeholder="Apellido"
-                                            required="required" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row py-3">
-                                <div class="col-md-4">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="telefono"
-                                            placeholder="Numero de Telefono" required="required" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="conEmergencia"
-                                            placeholder="Contacto de Emergencia" required="required" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="numEmergencia"
-                                            placeholder="Numero de Emergencia" required="required" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="control-group">
-                                        <input type="email" class="form-control" id="email" placeholder="Email" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <label for="fecha" class="col-form-label">Fecha de Nacimiento</label>
+    <div class="dashboard">
+        <div class="container-fluid py-4">
+            <div class="container" style="max-width: 900px;">
+                <h2>Ingresar Interno</h2>
+                <div class="row py-2">
+                    <div class="col-12">
+                        <div class="contact-form">
+                            <div id="success"></div>
+                            <form name="registrarInterno" id="registrarInterno">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="control-group">
+                                            <input type="text" class="form-control" id="nombre" placeholder="Nombre"
+                                                required="required" />
+                                            <p class="help-block text-danger"></p>
                                         </div>
-                                        <div class="col-md-7">
-                                            <input type="date" id="fecha" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="control-group">
+                                            <input type="text" class="form-control" id="apellido" placeholder="Apellido"
+                                                required="required" />
+                                            <p class="help-block text-danger"></p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row py-2">
-                                <div class="col-md-4">
-                                    <div class="control-group">
-                                        <label for="genero" class="col-form-label">Genero</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" id="genero" value="M">
-                                            <label class="form-check-label" for="genero">
-                                                Masculino
-                                            </label>
+                                <div class="form-row py-3">
+                                    <div class="col-md-4">
+                                        <div class="control-group">
+                                            <input type="text" class="form-control" id="telefono"
+                                                placeholder="Numero de Telefono" required="required" />
+                                            <p class="help-block text-danger"></p>
                                         </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" id="genero" value="F">
-                                            <label class="form-check-label" for="genero">
-                                                Femenino
-                                            </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="control-group">
+                                            <input type="text" class="form-control" id="conEmergencia"
+                                                placeholder="Contacto de Emergencia" required="required" />
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="control-group">
+                                            <input type="text" class="form-control" id="numEmergencia"
+                                                placeholder="Numero de Emergencia" required="required" />
+                                            <p class="help-block text-danger"></p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="py-4">
-                                <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
-                                <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
-                            </div>
-                        </form>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="control-group">
+                                            <input type="email" class="form-control" id="email" placeholder="Email" />
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <label for="fecha" class="col-form-label">Fecha de Nacimiento</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input type="date" id="fecha" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row py-2">
+                                    <div class="col-md-4">
+                                        <div class="control-group">
+                                            <label for="genero" class="col-form-label">Genero</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" id="genero" value="M">
+                                                <label class="form-check-label" for="genero">
+                                                    Masculino
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" id="genero" value="F">
+                                                <label class="form-check-label" for="genero">
+                                                    Femenino
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="py-4">
+                                    <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
+                                    <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!--    New Intern End  -->
     <!-- Interno End -->
 

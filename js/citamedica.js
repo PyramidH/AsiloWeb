@@ -149,6 +149,13 @@ async function denegarCita(idCita) {
     }
 }
 
+function limpiarFormularioAsignacion() {
+    document.getElementById('fecha').value = '';
+    document.getElementById('hora').value = '';
+    document.getElementById('medicos').options[0].selected = true;
+    document.getElementById('costo').value = '';
+}
+
 function editarCita(id) {
     const fila = document.querySelector(`tr[data-id="${id}"]`);
     const celdas = fila.querySelectorAll('td');
@@ -249,6 +256,7 @@ async function asignarCita(id) {
 
         if (response.status === 200) {
             cargarListaCitas();
+            limpiarFormularioAsignacion();
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
