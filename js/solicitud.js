@@ -36,7 +36,7 @@ async function cargarListaCitas() {
                 var mes = fecha.getMonth() + 1;
                 var año = fecha.getFullYear();
                 var hora = fecha.getHours().toString();
-                var minutos = fecha.getMinutes().toString();
+                var minutos = fecha.getMinutes().toString().padStart(2, '0');
                 var fechaFormateada = dia + "-" + mes + "-" + año + " " + hora + ":" + minutos;
                 row.innerHTML = `
                     <td>${cita.idCita}</td>
@@ -138,20 +138,39 @@ function editarCita(id) {
             const valorOriginal = celda.innerText;
             switch (index) {
                 case 2:
-                    celda.innerHTML = `<input type="text" style='width:100%' value="${valorOriginal}">`;
+                    celda.innerHTML = `<input type="text" class="form-control" style='width:100%' value="${valorOriginal}">`;
                     break;
                 case 3:
                     celda.innerHTML = '';
-                    celda.appendChild(cmbInternos.cloneNode(true));
+                    var cmbInternosUPD = cmbInternos.cloneNode(true);
+                    for (var i = 0; i < cmbInternosUPD.options.length; i++) {
+                        var option = cmbInternosUPD.options[i];
+                        if (option.text == "interno") {
+                            option.selected = false;
+                        }
+                        if (option.text == valorOriginal) {
+                            option.selected = true;
+                        }
+                    }
+                    celda.appendChild(cmbInternosUPD);
                     break;
                 case 4:
                     celda.innerHTML = '';
-                    celda.appendChild(cmbEnfermeros.cloneNode(true));
+                    var cmbEnfermeroUPD = cmbEnfermeros.cloneNode(true);
+                    for (var i = 0; i < cmbEnfermeroUPD.options.length; i++) {
+                        var option = cmbEnfermeroUPD.options[i];
+                        if (option.text == "enfermero") {
+                            option.selected = false;
+                        }
+                        if (option.text == valorOriginal) {
+                            option.selected = true;
+                        }
+                    }
+                    celda.appendChild(cmbEnfermeroUPD);
                     break;
             }
         }
     });
-
     const btnEditar = fila.querySelector('button.btn-primary');
     btnEditar.textContent = 'Guardar';
     btnEditar.classList.remove("btn-primary");
@@ -171,7 +190,7 @@ async function actualizarcita(id) {
     const fila = document.querySelector(`tr[data-id="${id}"]`);
     const celdas = fila.querySelectorAll('td');
     const cita = {
-        idCita: celdas[0].value,
+        idCita: id,
         motivo: celdas[2].querySelector('input').value,
         idInterno: celdas[3].querySelector('select').value,
         idEnfermero: celdas[4].querySelector('select').value
