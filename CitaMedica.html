@@ -23,7 +23,7 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body onload="cargarListaCitas(), cargarSelectInterno(), cargarSelectMedico(), cargarSelectEnfermero()">
+<body onload="cargarListaCitas(), cargarSelectMedico()">
 
     <!-- Topbar Start -->
     <div class="container-fluid bg-primary py-3">
@@ -82,9 +82,68 @@
     <div class="dashboard">
         <div class="container-fluid py-4">
             <div class="container" style="max-width: 1250px;">
-                <!-- Intern List -->
-                <h2>Lista de Citas Médicas</h2>
+                <h2>Solicitudes Pendientes</h2>
                 <div class="TableV2 py-2" id="cita-list"></div>
+            </div>
+        </div>
+        <div class="container-fluid py-4">
+            <div class="container" style="max-width: 1250px;">
+                <h2>Solicitudes Asignadas</h2>
+                <div class="TableV2 py-2" id="cita-list-a"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Asignar Paciente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="AsignarCita">
+                    <div class="modal-body py-4">
+                        <div class="form-row py-2">
+                            <div class="col-md-6">
+                                <div class="control-group">
+                                    <input type="date" class="form-control" id="fecha" placeholder="Nombre"
+                                        required="required" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="control-group">
+                                    <input type="time" class="form-control" id="hora" placeholder="Nombre"
+                                        required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row py-3">
+                            <div class="col-md-6">
+                                <div class="control-group">
+                                    <select class="form-control" id="medicos" required="required">
+                                        <option value="" disabled selected>Medico</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="control-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Q</span>
+                                        </div>
+                                        <input type="num" step="0.01" class="form-control" id="costo" placeholder="costo"
+                                            required="required" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" id="modal-footer">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -123,6 +182,7 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/citamedica.js"></script>
+
 </body>
 
 </html>

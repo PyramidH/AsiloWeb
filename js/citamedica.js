@@ -4,9 +4,9 @@ const apiUrlMedicos = 'http://malvarado-001-site1.atempurl.com/api/Medicos';
 const apiUrlEnfermeros = 'http://malvarado-001-site1.atempurl.com/api/Enfermeros';
 
 const CitaList = document.getElementById('cita-list');
-const cmbInternos = document.getElementById('internos');
+const CitaList_a = document.getElementById('cita-list-a');
 const cmbMedicos = document.getElementById('medicos');
-const cmbEnfermeros = document.getElementById('enfermeros');
+
 
 
 // Función para cargar la lista de citas
@@ -14,15 +14,10 @@ async function cargarListaCitas() {
     try {
         const response = await fetch(`${apiUrl}/Lista`);
         const data = await response.json();
-        //console.log(data);
         if (response.status === 200) {
-            // Limpiar la lista
             CitaList.innerHTML = '';
-
-            // Crear una tabla con clases de Bootstrap
+            CitaList_a.innerHTML = '';
             const table = document.createElement('table');
-
-            // Crear encabezados de la tabla con clases de Bootstrap
             const tableHeader = document.createElement('thead');
             tableHeader.innerHTML = `
                 <tr>
@@ -33,12 +28,53 @@ async function cargarListaCitas() {
                     <th>Opciones</th>
                 </tr>
             `;
-            table.appendChild(tableHeader);
 
-            // Crear filas de la tabla con datos de citas
+            const table_a = document.createElement('table');
+            const tableHeader_a = document.createElement('thead');
+            tableHeader_a.innerHTML = `
+                <tr>
+                    <th>ID</th>
+                    <th>Horario</th>
+                    <th>Interno</th>
+                    <th>Medico E.</th>
+                    <th>Enfermero</th>
+                    <th>Costo</th>
+                    <th>Opciones</th>
+                </tr>
+            `;
+
+            table.appendChild(tableHeader);
+            table_a.appendChild(tableHeader_a);
+
             const tableBody = document.createElement('tbody');
+            const tableBody_a = document.createElement('tbody');
             data.response.forEach(cita => {
                 if (cita.estado == 'Solicitud') {
+                    const row = document.createElement('tr');
+                    row.setAttribute('data-id', cita.idCita);
+                    var fechaOriginal = cita.fechaHora;
+                    var fecha = new Date(fechaOriginal);
+                    var dia = fecha.getDate();
+                    var mes = fecha.getMonth() + 1;
+                    var año = fecha.getFullYear();
+                    var hora = fecha.getHours().toString();
+                    var minutos = fecha.getMinutes().toString().padStart(2, '0');
+                    var fechaFormateada = dia + "-" + mes + "-" + año + " " + hora + ":" + minutos;
+                    row.innerHTML = `
+                        <td>${cita.idCita}</td>
+                        <td>${fechaFormateada}</td>
+                        <td>${cita.motivo}</td>
+                        <td>${cita.idInternoNavigation.nombre + " " + cita.idInternoNavigation.apellido}</td>
+                        <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="botonFooter(${cita.idCita})">Asignar</button>
+                        <button class="btn btn-cancel" onclick="denegarCita(${cita.idCita})">Denegar</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                    table.appendChild(tableBody);
+                    CitaList.appendChild(table);
+                }
+                if (cita.estado == 'Asignada') {
                     const row = document.createElement('tr');
                     row.setAttribute('data-id', cita.idCita);
                     var fechaOriginal = cita.fechaHora;
@@ -52,20 +88,20 @@ async function cargarListaCitas() {
                     row.innerHTML = `
                         <td>${cita.idCita}</td>
                         <td>${fechaFormateada}</td>
-                        <td>${cita.motivo}</td>
-                        <td>${cita.idInternoNavigation.nombre + " " + cita.idInternoNavigation.apellido}</td>
+                        <td>${cita.idInternoNavigation.nombre + cita.idInternoNavigation.apellido}</td>
+                        <td>${cita.idMedicoNavigation.nombre + " " + cita.idMedicoNavigation.apellido}</td>
+                        <td>${cita.idEnfermeroNavigation.nombre + " " + cita.idEnfermeroNavigation.apellido}</td>
+                        <td>Q ${cita.costo}</td>
                         <td>
-                        <button class="btn btn-primary" onclick="editarCita(${cita.idCita})">Asignar</button>
-                        <button class="btn btn-cancel" onclick="eliminarCita(${cita.idCita})">Denegar</button>
+                        <button class="btn btn-primary" onclick="editarCita(${cita.idCita})">Editar</button>
+                        <button class="btn btn-cancel" onclick="eliminarCita(${cita.idCita})">Eliminar</button>
                         </td>
                     `;
-                    tableBody.appendChild(row);
+                    tableBody_a.appendChild(row);
+                    table_a.appendChild(tableBody_a);
+                    CitaList_a.appendChild(table_a);
                 }
             });
-
-            table.appendChild(tableBody);
-
-            CitaList.appendChild(table);
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
@@ -74,72 +110,48 @@ async function cargarListaCitas() {
     }
 }
 
-async function guardarcita(event) {
+async function botonFooter(id) {
+    var modal_footer = document.getElementById('modal-footer');
+    modal_footer.innerHTML = '';
+    var botonAsignar = document.createElement('button');
+    botonAsignar.type = 'submit';
+    botonAsignar.className = 'btn btn-primary';
+    botonAsignar.textContent = 'Asignar';
+    botonAsignar.setAttribute("onclick", "asignarCita(" + id + ")");
+    botonAsignar.setAttribute('data-dismiss', 'modal');
+    var botonCancelar = document.createElement('button');
+    botonCancelar.type = 'button';
+    botonCancelar.className = 'btn btn-secondary';
+    botonCancelar.textContent = 'Cancelar';
+    botonCancelar.setAttribute('data-dismiss', 'modal');
+    modal_footer.appendChild(botonAsignar);
+    modal_footer.appendChild(botonCancelar);
+}
+
+async function denegarCita(idCita) {
     event.preventDefault();
     const cita = {
-        fechahora: document.getElementById('fechacita').value,
-        motivo: document.getElementById('motivo').value,
-        costo: document.getElementById('costo').value,
-        idInterno: document.getElementById('internos').value,
-        idMedico: document.getElementById('medicos').value,
-        idEnfermero: document.getElementById('enfermeros').value
+        idCita: idCita,
+        estado: "Denegada"
     };
-    //console.log(cita);
-    let apiUrlEndpoint = `${apiUrl}/Guardar`;
-
+    let apiUrlEndpoint = `${apiUrl}/Editar`;
     try {
         const response = await fetch(apiUrlEndpoint, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(cita)
         });
-
         const data = await response.json();
-
-        if (response.status === 200) {
-            cargarListaCitas();
-            limpiarFormulario();
-        } else {
-            console.error('Error en la respuesta de la API:', data.mensaje);
-        }
-    } catch (error) {
-        console.error('Error al guardar el Interno:', error);
-    }
-}
-
-async function eliminarCita(idCita) {
-    let apiUrlEndpoint = `${apiUrl}/Eliminar/${idCita}`;
-    const id = { idCita: idCita }
-    try {
-        const response = await fetch(apiUrlEndpoint, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(id)
-        });
-
-        const data = await response.json();
-
         if (response.status === 200) {
             cargarListaCitas();
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
     } catch (error) {
-        console.error('Error al eliminar la cita', error);
+        console.error('Error al actualizar la cita:', error);
     }
-}
-
-function limpiarFormulario() {
-    document.getElementById('fechacita').value = '';
-    document.getElementById('internos').value = '';
-    document.getElementById('medicos').value = '';
-    document.getElementById('enfermeros').value = '';
-    document.getElementById('costo').value = '';
-    document.getElementById('motivo').value = '';
 }
 
 function editarCita(id) {
@@ -148,25 +160,24 @@ function editarCita(id) {
     celdas.forEach(function (celda, index) {
         if (index < celdas.length - 1) {
             const valorOriginal = celda.innerText;
-            celda.innerHTML = `<input type="text" style='width:100%' value="${valorOriginal}">`;
             if (index == 1) {
-                celda.innerHTML = `<input type="date" style='width:100%' value="${valorOriginal}">`;
+                celda.innerHTML = `<input type="date" style='width:100%' value="${valorOriginal}"><input type="time" style='width:100%' value="${valorOriginal}">`;
             }
-            if (index == 4) {
+            if (index == 3) {
                 celda.innerHTML = '';
-                celda.appendChild(cmbInternos.cloneNode(true));
-            }
-            if (index == 5) {
-                celda.innerHTML = '';
-                celda.appendChild(cmbMedicos.cloneNode(true));
-            }
-            if (index == 6) {
-                celda.innerHTML = '';
-                celda.appendChild(cmbEnfermeros.cloneNode(true));
+                var cmbMedicoUPD = cmbMedicos.cloneNode(true);
+                for (var i = 0; i < cmbMedicoUPD.options.length; i++) {
+                    var option = cmbMedicoUPD.options[i];
+                    if (option.text == "Medico") {
+                        option.selected = false;
+                    }
+                    if (option.text == valorOriginal) {
+                        option.selected = true;
+                    }
+                }
             }
         }
     });
-
     const btnEditar = fila.querySelector('button.btn-primary');
     btnEditar.textContent = 'Guardar';
     btnEditar.classList.remove("btn-primary");
@@ -219,31 +230,39 @@ async function actualizarcita(id) {
     }
 }
 
-document.getElementById('RegistrarCita').addEventListener('submit', guardarcita);
-
-
-async function cargarSelectInterno() {
-
+async function asignarCita(id) {
+    event.preventDefault();
+    var datetime = document.getElementById('fecha').value + 'T' + document.getElementById('hora').value;
+    const cita = {
+        idCita: id,
+        fechaHora: datetime,
+        idMedico: document.getElementById('medicos').value,
+        costo: document.getElementById('costo').value,
+        estado: "Asignada"
+    };
+    let apiUrlEndpoint = `${apiUrl}/Editar`;
     try {
-        const response = await fetch(`${apiUrlInternos}/Lista`);
+        const response = await fetch(apiUrlEndpoint, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cita)
+        });
+
         const data = await response.json();
 
         if (response.status === 200) {
-            data.response.forEach(interno => {
-                var cmbOption = document.createElement("option");
-                cmbOption.text = interno.nombre + " " + interno.apellido;
-                cmbOption.value = interno.idInterno;
-                cmbInternos.add(cmbOption);
-            });
-
+            cargarListaCitas();
         } else {
             console.error('Error en la respuesta de la API:', data.mensaje);
         }
     } catch (error) {
-        console.error('Error al cargar la lista de Internos:', error);
+        console.error('Error al actualizar la cita:', error);
     }
-
 }
+
+document.getElementById('AsignarCita').addEventListener('submit', asignarCita);
 
 async function cargarSelectMedico() {
 
@@ -254,32 +273,9 @@ async function cargarSelectMedico() {
         if (response.status === 200) {
             data.response.forEach(medico => {
                 var cmbOption = document.createElement("option");
-                cmbOption.text = medico.nombre + " " + medico.apellido;
+                cmbOption.text = medico.nombre + " " + medico.apellido + " - " + medico.especialidad;
                 cmbOption.value = medico.idMedico;
                 cmbMedicos.add(cmbOption);
-            });
-
-        } else {
-            console.error('Error en la respuesta de la API:', data.mensaje);
-        }
-    } catch (error) {
-        console.error('Error al cargar la lista de Internos:', error);
-    }
-
-}
-
-async function cargarSelectEnfermero() {
-
-    try {
-        const response = await fetch(`${apiUrlEnfermeros}/Lista`);
-        const data = await response.json();
-
-        if (response.status === 200) {
-            data.response.forEach(enfermero => {
-                var cmbOption = document.createElement("option");
-                cmbOption.text = enfermero.nombre + " " + enfermero.apellido;
-                cmbOption.value = enfermero.idEnfermero;
-                cmbEnfermeros.add(cmbOption);
             });
 
         } else {

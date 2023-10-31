@@ -28,28 +28,30 @@ async function cargarListaCitas() {
             table.appendChild(tableHeader);
             const tableBody = document.createElement('tbody');
             data.response.forEach(cita => {
-                const row = document.createElement('tr');
-                row.setAttribute('data-id', cita.idCita);
-                var fechaOriginal = cita.fechaHora;
-                var fecha = new Date(fechaOriginal);
-                var dia = fecha.getDate();
-                var mes = fecha.getMonth() + 1;
-                var año = fecha.getFullYear();
-                var hora = fecha.getHours().toString();
-                var minutos = fecha.getMinutes().toString().padStart(2, '0');
-                var fechaFormateada = dia + "-" + mes + "-" + año + " " + hora + ":" + minutos;
-                row.innerHTML = `
-                    <td>${cita.idCita}</td>
-                    <td>${fechaFormateada}</td>
-                    <td>${cita.motivo}</td>
-                    <td>${cita.idInternoNavigation.nombre + " " + cita.idInternoNavigation.apellido}</td>
-                    <td>${cita.idEnfermeroNavigation.nombre + " " + cita.idEnfermeroNavigation.apellido}</td>
-                    <td>
-                    <button class="btn btn-primary" onclick="editarCita(${cita.idCita})">Editar</button>
-                    <button class="btn btn-cancel" onclick="eliminarCita(${cita.idCita})">Eliminar</button>
-                    </td>
-                `;
-                tableBody.appendChild(row);
+                if (cita.estado == 'Solicitud') {
+                    const row = document.createElement('tr');
+                    row.setAttribute('data-id', cita.idCita);
+                    var fechaOriginal = cita.fechaHora;
+                    var fecha = new Date(fechaOriginal);
+                    var dia = fecha.getDate();
+                    var mes = fecha.getMonth() + 1;
+                    var año = fecha.getFullYear();
+                    var hora = fecha.getHours().toString();
+                    var minutos = fecha.getMinutes().toString().padStart(2, '0');
+                    var fechaFormateada = dia + "-" + mes + "-" + año + " " + hora + ":" + minutos;
+                    row.innerHTML = `
+                        <td>${cita.idCita}</td>
+                        <td>${fechaFormateada}</td>
+                        <td>${cita.motivo}</td>
+                        <td>${cita.idInternoNavigation.nombre + " " + cita.idInternoNavigation.apellido}</td>
+                        <td>${cita.idEnfermeroNavigation.nombre + " " + cita.idEnfermeroNavigation.apellido}</td>
+                        <td>
+                        <button class="btn btn-primary" onclick="editarCita(${cita.idCita})">Editar</button>
+                        <button class="btn btn-cancel" onclick="eliminarCita(${cita.idCita})">Eliminar</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                }
             });
             table.appendChild(tableBody);
             CitaList.appendChild(table);
