@@ -112,11 +112,25 @@
                     <div class="col-12">
                         <div class="contact-form">
                             <form id="registrarVisita">
+                                <div class="form-row">
+                                    <div class="col-md-1">
+                                        <div class="control-group">
+                                            <input type="text" class="form-control" id="id"
+                                                placeholder="Id" disabled required="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="control-group">
+                                            <input type="text" class="form-control" id="paciente"
+                                                placeholder="Paciente" disabled required="required"/>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-row py-3">
                                     <div class="col-md-12">
                                         <div class="control-group">
                                             <textarea class="form-control" rows="4" id="diagnostico"
-                                                placeholder="Diagnostico" required="required"></textarea>
+                                                placeholder="Diagnostico" disabled required="required"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -124,30 +138,27 @@
                                     <div class="col-md-5">
                                         <div class="control-group">
                                             <input type="text" class="form-control" id="medicamento"
-                                                placeholder="Medicamento" required="required" />
-                                            <p class="help-block text-danger"></p>
+                                                placeholder="Medicamento" disabled required="required" />
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="control-group">
-                                            <input type="num" class="form-control" id="cantidad" placeholder="Cantidad"
-                                                required="required" />
-                                            <p class="help-block text-danger"></p>
+                                            <input type="number" class="form-control" id="cantidad" placeholder="Cantidad"
+                                                disabled required="required" />
                                         </div>
                                     </div>
                                     <div class="col-md-5">
                                         <div class="control-group">
                                             <input type="text" class="form-control" id="tiempo" placeholder="Tiempo"
-                                                required="required" />
-                                            <p class="help-block text-danger"></p>
+                                                disabled required="required" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-row">
+                                <div class="form-row py-3">
                                     <div class="col-md-12">
                                         <div class="control-group">
                                             <textarea class="form-control" rows="4" id="observaciones"
-                                                placeholder="Observaciones" required="required"></textarea>
+                                                placeholder="Observaciones" disabled required="required"></textarea>
                                         </div>
                                     </div>
                                 </div>
