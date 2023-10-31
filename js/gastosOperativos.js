@@ -125,7 +125,8 @@ async function eliminarGasto(idGasto) {
 
 function limpiarFormularioGastos() {
     document.getElementById('descripcion').value = '';
-    document.getElementById('monto').value = '';
+    document.getElementById('montoGasto').value = '';
+    document.getElementById('fechaGasto').value = '';
 }
 
 function editarGasto(id) {
@@ -135,6 +136,9 @@ function editarGasto(id) {
         if (index < celdas.length - 1) {
             const valorOriginal = celda.innerText;
             celda.innerHTML = `<input type="text" style='width:100%' value="${valorOriginal}">`;
+            if(index == 3){
+                celda.innerHTML = `<input type="date" style='width:100%' value="${valorOriginal}">`;
+            }
         }
     });
 
