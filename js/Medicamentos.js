@@ -64,7 +64,8 @@ async function GuardarMedicamento(event) {
     const Medicamento = {
         nombre: document.getElementById('Nombre').value,
         descripcion: document.getElementById('Descripcion').value,
-        costo: document.getElementById('Costo').value
+        costo: document.getElementById('Costo').value,
+        stock: document.getElementById('Stock').value
     };
 
     let apiUrlEndpoint = `${apiUrl}/Guardar`;
@@ -119,6 +120,7 @@ function limpiarFormularioMedicamentos() {
     document.getElementById('Nombre').value = '';
     document.getElementById('Descripcion').value = '';
     document.getElementById('Costo').value = '';
+    document.getElementById('Stock').value = '';
 }
 
 function editarMedicamento(id) {
@@ -146,7 +148,7 @@ function editarMedicamento(id) {
     };
 }
 
-async function actualizarMedicamento(id, event) {
+async function actualizarMedicamento(id) {
     event.preventDefault();
     const fila = document.querySelector(`tr[data-id="${id}"]`);
     const celdas = fila.querySelectorAll('td');
@@ -155,7 +157,7 @@ async function actualizarMedicamento(id, event) {
         nombre: celdas[1].querySelector('input').value,
         descripcion: celdas[2].querySelector('input').value,
         costo: celdas[3].querySelector('input').value,
-        existencia: celdas[4].querySelector('input').value
+        stock: celdas[4].querySelector('input').value
     };
 
     let apiUrlEndpoint = `${apiUrl}/Editar`;
