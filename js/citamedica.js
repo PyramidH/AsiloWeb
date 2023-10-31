@@ -39,7 +39,6 @@ async function cargarListaCitas() {
                     <th>Medico E.</th>
                     <th>Enfermero</th>
                     <th>Costo</th>
-                    <th>Opciones</th>
                 </tr>
             `;
 
@@ -92,10 +91,6 @@ async function cargarListaCitas() {
                         <td>${cita.idMedicoNavigation.nombre + " " + cita.idMedicoNavigation.apellido}</td>
                         <td>${cita.idEnfermeroNavigation.nombre + " " + cita.idEnfermeroNavigation.apellido}</td>
                         <td>Q ${cita.costo}</td>
-                        <td>
-                        <button class="btn btn-primary" onclick="editarCita(${cita.idCita})">Editar</button>
-                        <button class="btn btn-cancel" onclick="eliminarCita(${cita.idCita})">Eliminar</button>
-                        </td>
                     `;
                     tableBody_a.appendChild(row);
                     table_a.appendChild(tableBody_a);
