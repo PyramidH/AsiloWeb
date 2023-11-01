@@ -10819,7 +10819,7 @@ h6,
 }
 
 .barra-vertical {
-  position: fixed;
+  position: absolute;
   width: 250px;
 }
 
