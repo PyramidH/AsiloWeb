@@ -28,17 +28,10 @@
 <!-- Topbar Start -->
 <div class="container-fluid bg-primary py-3">
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
-        <div class="d-inline-flex align-items-center">
-          <a class="text-white pr-3" href="index.html">Cabeza de Algodon</a>
-          <span class="text-white">|</span>
-          <a class="text-white px-3" href="">{Rol}</a>
-          <span class="text-white">|</span>
-          <a class="text-white pl-3" href="">Ayuda</a>
-        </div>
+      <div class="row">
+          <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+          </div>
       </div>
-    </div>
   </div>
 </div>
 <!-- Topbar End -->
@@ -47,37 +40,48 @@
 <!-- Navbar Start -->
 <div class="container-fluid position-relative nav-bar p-0">
   <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-    <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 pl-3 pl-lg-5">
-      <a href="" class="navbar-brand">
-        <h1 class="m-0 text-secondary"><span class="text-primary">Cotton</span>Care</h1>
-      </a>
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-        <div class="navbar-nav ml-auto py-0">
-          <a href="Menu.html" class="nav-item nav-link">Menú</a>
-          <a href="about.html" class="nav-item nav-link">Programar Cita Médica</a>
-          <a href="index.html" class="nav-item nav-link active">Cerrar Sesión</a>
-        </div>
-      </div>
-    </nav>
+      <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 pl-3 pl-lg-5">
+          <a href="" class="navbar-brand">
+              <h1 class="m-0 text-secondary"><span class="text-primary">Cotton</span>Care</h1>
+          </a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+              <div class="navbar-nav ml-auto py-0">
+              </div>
+          </div>
+      </nav>
   </div>
 </div>
 <!-- Navbar End -->
 
 
 <!-- Page Header Start -->
-<div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5">
-  <div class="container py-2">
-    <div class="row align-items-center py-4">
-      <div class="col-md-6 text-center text-md-left">
-        <h1 style="color:#194376">Médico</h1>
-      </div>
-    </div>
-  </div>
+<div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2">
 </div>
-<!-- Page Header Start -->
+<!-- Page Header End -->
+
+ <!-- Contenido principal del dashboard -->
+ <span class = 'fondo-barra-vertical'></span>
+ <nav class="barra-vertical">
+     <h4 class="font-weight-bold">FUNDACIÓN <i class="fas fa-clinic-medical"></i></h4>
+     <ul class="list-group">
+         <a class="d-flex justify-content-between align-items-center">
+             Solicitudes
+             <i class="fas fa-briefcase-medical"></i>
+         </a>
+         <a href="Medico.html" class="d-flex justify-content-between align-items-center">
+          Médicos
+          <i class="fas fa-briefcase-medical"></i>
+      </a>
+         <a class="d-flex justify-content-between align-items-center" href="login.html">
+             Cerrar Sesión
+             <i class="fas fa-sign-out-alt"></i>
+         </a>
+     </ul>
+ </nav>
+  <!-- Contenido principal del dashboard -->
 
 <!--    Intern Table    -->
 <div class="container-fluid py-4">
@@ -124,16 +128,26 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="control-group">
-                  <input type="text" class="form-control" id="especialidad" placeholder="Especialidad"
-                         required="required"/>
-                  <p class="help-block text-danger"></p>
+                  <select class="form-control" id="especialidad" required="required">
+                    <option value="Especialidad" disabled selected>Especialidad</option>
+                    <option value="Osteopatía">Osteopatía</option>
+                    <option value="Cardiología">Cardiología</option>
+                    <option value="Urología">Urología</option>
+                    <option value="Gastroenterología">Gastroenterología</option>
+                    <option value="Ginecología">Ginecología</option>
+                    <option value="Dermatología">Dermatología</option>
+                    <option value="Endocrinología">Endocrinología</option>
+                    <option value="Nutriología">Nutriología</option>
+                    <option value="Fisioterapia">Fisioterapia</option>
+                    <option value="Rehabilitacion">Rehabilitacion</option>
+                </select>
                 </div>
               </div>
             </div>
 
             <div class="py-4">
               <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
-              <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
+              <a href="dashboardFundacion.html" class="btn btn-cancel py-3 px-5">Regresar</a>
             </div>
 
           </form>

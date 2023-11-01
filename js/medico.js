@@ -123,7 +123,7 @@ async function eliminarMedico(idMedico) {
     }
 }
 
-async function editarMedico(id) {
+function editarMedico(id) {
     const fila = document.querySelector(`tr[data-id="${id}"]`);
     const celdas = fila.querySelectorAll('td');
     celdas.forEach(function (celda, index) {
@@ -182,6 +182,7 @@ async function actualizarMedico(id) {
 }
 
 document.getElementById('RegistrarMedico').addEventListener('submit', GuardarMedico);
+
 
 
 
