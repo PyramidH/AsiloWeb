@@ -20,7 +20,7 @@ async function cargarListaDonaciones() {
             tableHeader.innerHTML = `
                 <tr>
                     <th>ID</th>
-                    <th>TipoDonante</th>
+                    <th>Tipo de Donación</th>
                     <th>Monto</th>
                     <th>Fecha</th>
                     <th>Opciones</th>
@@ -125,8 +125,8 @@ async function eliminarDonacion(idDonacion) {
     }
 }
 
-function editarDonacion(idDonacion) {
-    const fila = document.querySelector(`tr[data-id="${idDonacion}"]`);
+function editarDonacion(id) {
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
     const celdas = fila.querySelectorAll('td');
     celdas.forEach(function (celda, index) {
         if (index < celdas.length - 1) {
@@ -140,7 +140,7 @@ function editarDonacion(idDonacion) {
     btnEditar.classList.remove("btn-primary");
     btnEditar.classList.add("btn-save");
     btnEditar.onclick = function () {
-        actualizarDonacion(idDonacion);
+        actualizarDonacion(id);
     };
     const btnEliminar = fila.querySelector('button.btn-cancel');
     btnEliminar.textContent = 'Cancelar';
@@ -149,14 +149,15 @@ function editarDonacion(idDonacion) {
     };
 }
 
-async function actualizarDonacion(idDonacion) {
+async function actualizarDonacion(id) {
     event.preventDefault();
-    const fila = document.querySelector(`tr[data-id="${idDonacion}"]`);
+    const fila = document.querySelector(`tr[data-id="${id}"]`);
     const celdas = fila.querySelectorAll('td');
     const donacion = {
-        tipoDonante: celdas[0].querySelector('input').value,
-        monto: celdas[1].querySelector('input').value,
-        fecha: celdas[2].querySelector('input').value
+        idDonacion: celdas[0].querySelector('input').value,
+        tipoDonante: celdas[1].querySelector('input').value,
+        monto: celdas[2].querySelector('input').value,
+        fecha: celdas[3].querySelector('input').value
     };
 
     let apiUrlEndpoint = `${apiUrl}/Editar`;

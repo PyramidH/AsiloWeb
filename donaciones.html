@@ -60,32 +60,32 @@
     <!-- Navbar End -->
 
 
-    <!-- Page Header Start -->
     <!-- Contenido principal del dashboard -->
     <span class="fondo-barra-vertical"></span>
     <nav class="barra-vertical">
-        <a href="dashboardAsilo.html">
-            <h4 class="font-weight-bold mb-4 ml-4">ASILO <i class="fas fa-hospital-user"></i></h4>
-        </a>
+        <h4 class="font-weight-bold mb-4 ml-4">ASILO <i class="fas fa-hospital-user"></i></h4>
         <ul class="list-group">
             <a class="d-flex justify-content-between align-items-center" href="donaciones.html">
                 Donación
                 <i class="fas fa-hand-holding-medical"></i>
             </a>
-            <a class="d-flex justify-content-between align-items-center" href="gastosOperativos.html" >
+            <a class="d-flex justify-content-between align-items-center" href="gastosOperativos.html">
                 Gastos Operativos
                 <i class="fas fa-money-check"></i>
             </a>
-            <a class="d-flex justify-content-between align-items-center">
+            <a class="d-flex justify-content-between align-items-center" href="CuotaMensual.html">
                 Cuota Mensual
                 <i class="fas fa-coins"></i>
             </a>
+        </ul>
+        <h4 class="font-weight-bold mb-2 ml-4 mt-4">REPORTES <i class="fas fa-hospital-user"></i></h4>
+        <ul class="list-group">
             <a class="d-flex justify-content-between align-items-center">
                 Ficha Médica
                 <i class="fas fa-file-medical-alt"></i>
             </a>
             <a class="d-flex justify-content-between align-items-center">
-                Costos Paciente
+                Costos por Paciente
                 <i class="fas fa-donate"></i>
             </a>
             <a class="d-flex justify-content-between align-items-center">
@@ -93,7 +93,7 @@
                 <i class="fas fa-clipboard-list"></i>
             </a>
             <a class="d-flex justify-content-between align-items-center">
-                Cobros Paciente
+                Cobros por Paciente
                 <i class="fas fa-procedures"></i>
             </a>
             <a class="d-flex justify-content-between align-items-center">
@@ -101,24 +101,24 @@
                 <i class="fas fa-hand-holding-usd"></i>
             </a>
             <a class="d-flex justify-content-between align-items-center">
-                Reporte
-                <i class="fas fa-file-medical"></i>
+                Donaciones y Cobros
+                <i class="fas fa-hand-holding-usd"></i>
             </a>
             <a class="d-flex justify-content-between align-items-center">
                 Exámenes
                 <i class="fas fa-notes-medical"></i>
             </a>
-            <a class="d-flex justify-content-between align-items-center"  href="Medicamentos.html">
+            <a class="d-flex justify-content-between align-items-center" href="Medicamentos.html">
                 Medicamentos
                 <i class="fas fa-pills"></i>
             </a>
-            <a class="d-flex justify-content-between align-items-center" href="login.html">
+            <a class="d-flex justify-content-between align-items-center" id="logOut" href="login.html">
                 Cerrar Sesión
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </ul>
     </nav>
-    <!-- Page Header Start -->
+    <!-- Contenido principal del dashboard -->
 
 
     <!-- Donaciones Start -->
@@ -140,7 +140,7 @@
     <!--    New Intern  -->
     <div class="container-fluid py-4">
         <div class="container" style="max-width: 900px;">
-            <h2>Ingresar Donacion</h2>
+            <h2>Ingresar Donación</h2>
             <div class="row py-2">
                 <div class="col-12">
                     <div class="contact-form">
@@ -149,7 +149,7 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="control-group">
-                                        <input type="text" class="form-control" id="tipoDonante" placeholder="tipoDonante"
+                                        <input type="text" class="form-control" id="tipoDonante" placeholder="Tipo de Donación"
                                                required="required"/>
                                         <p class="help-block text-danger"></p>
                                     </div>
@@ -178,7 +178,7 @@
                             </div>
                             <div class="py-4">
                                 <button class="btn btn-save py-3 px-5" type="submit">Guardar</button>
-                                <a href="menu.html" class="btn btn-cancel py-3 px-5">Regresar</a>
+                                <a href="dashboardAsilo.html" class="btn btn-cancel py-3 px-5">Regresar</a>
                             </div>
                         </form>
                     </div>
@@ -214,13 +214,9 @@
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <!-- Intern Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-    <script src="js/donaciones.js"></script>
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/donaciones.js"></script>
     </body>
 
 </html>
